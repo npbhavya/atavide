@@ -41,13 +41,12 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
   The log should complete with no errors, and output directory "atavide.out" should be generated with a copy of the input file
 
 4. Install databases required,
-    - Install the [appropriate super-focus database](https://github.com/metageni/SUPER-FOCUS/issues/66) [hint: probably version 2] 
+    - Install the [appropriate super-focus database](https://cloudstor.aarnet.edu.au/plus/s/bjYDqqDXK5u7JiF) \
+        Currently, superfocus database has to be downloaded manually to database directory
     - Copy the [NCBI taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/) (You really just need the [taxdump.tar.gz]           (https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz) file)
     Run the below command to install the databases \
         `atavide install database`
-
     Note: If these databases are already installed, then add the directory file path to config.yaml.
-    
     
 Working through this \
 
