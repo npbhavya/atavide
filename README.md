@@ -47,17 +47,20 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
     Run the below command to install the databases \
         `atavide install database` \
     Note: If these databases are already installed, then add the directory file path to config.yaml.
-    
-Working through this \
 
-6. Have a directory of fastq files with both `_R1_` and `_R2_` files in a data directory: `$DATA_DIR/fastq` 
-7. Run atavide: `cd $DATA_DIR && snakemake --configfile $ATAVIDE_DIR/atavide.yaml -s $ATAVIDE_DIR/workflow/atavide.snakefile --profile slurm`
-
-
-# Current processing steps:
+5. To run atavide \
+    `atavide run --input test-data --profile slurm`
+  
+  This will run all the steps in atavide mentioned below, or you have the option of running each module one at a time
 
 ### Steps:
-1. QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
+*Module 1: Preprocessing only*
+- QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
+To run only this module run the command \
+    `atavide run --input test-data --profile slurm -R QC`
+    
+Work in progress
+
 2. optional host removal using bowtie2 and samtools, [as described previously](https://edwards.flinders.edu.au/command-line-deconseq/). To enable this, you need to provide a path to the host db and a host db.
 
 ### Metagenome assembly
