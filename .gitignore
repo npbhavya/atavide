@@ -136,3 +136,6 @@ atavide.out
 
 #conda environment 
 conda
+
+#database
+databases
