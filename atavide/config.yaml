@@ -1,0 +1,12 @@
+directories:
+  Reads: fastq
+  assemblies: assemblies
+  binning: binning
+  prinseq: QC
+  read_based_annotations: ReadAnnotations
+  statistics: statistics
+input: ../test-data/
+output: atavide.out
+sample_description: read based annotation, assembly and binning of metagenomes by
+  atavide
+sample_id: atavide

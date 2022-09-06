@@ -1,9 +1,5 @@
-Please cite atavide in your paper using this article:
+# Citation
 
+If you use atavide, please cite
 
-Please consider also citing these dependencies:
-Snaketool:
-TBA
-
-Snakemake:
-https://doi.org/10.12688/f1000research.29032.1
+Roach M., and Edwards R.A., 2021. Atavide: atavistic metagenome annotations. DOI: 10.5281/zenodo.5523912
