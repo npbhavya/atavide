@@ -133,3 +133,6 @@ dmypy.json
 
 # output directory 
 atavide.out 
+
+#conda environment 
+conda
