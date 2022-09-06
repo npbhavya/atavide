@@ -23,21 +23,21 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 
 # Installation and getting going
 
-0. Make sure to have a conda environment with snakemake v.7.14 and higher installed
-    `conda create env -y workflow`
-    `conda activate workflow`
-    `conda install -c bioconda snakemake`
+0. Make sure to have a conda environment with snakemake v.7.14 and higher installed \
+    `conda create env -y workflow` \
+    `conda activate workflow` \
+    `conda install -c bioconda snakemake` \
   Setup [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02/snakemake-profiles-updated)
 
-1. Clone this repository from GitHub: 
-    `git clone https://github.com/linsalrob/atavide.git`
+1. Clone this repository from GitHub: \
+    `git clone https://github.com/linsalrob/atavide.git` \
     `git checkout -b dev-np`
     
-2. Install the python packages required to run atavide 
+2. Install the python packages required to run atavide \
     `cd atavide & python setup.py install`
     
-3. Test installation:
-  `atavide run --input test-data/SRR1237781_1.fastq.gz`
+3. Test installation: \
+  `atavide run --input test-data/SRR1237781_1.fastq.gz` \
   The log should complete with no errors, and output directory "atavide.out" should be generated with a copy of the input file
 
 4. Install databases required:
