@@ -130,3 +130,6 @@ dmypy.json
 
 # snakemake builds
 .snakemake/
+
+# output directory 
+atavide.out 

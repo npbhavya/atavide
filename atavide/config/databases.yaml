@@ -5,3 +5,13 @@
 #mirror: "ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/"
 #databaseFiles:
 # - Pfam35.0/Pfam-A.hmm.gz
+
+#NCBi taxonomy database download
+mirror: "https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/"
+databaseFiles:
+  - taxdump.tar.gz
+
+#Superfocus database download - need to fix this
+#mirror: "https://cloudstor.aarnet.edu.au/plus/s/bjYDqqDXK5u7JiF"
+#databaseFiles:
+# - Pfam35.0/Pfam-A.hmm.gz

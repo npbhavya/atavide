@@ -48,6 +48,9 @@ atavide run ... --profile [profile]
 For information on Snakemake profiles see:
 https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles
 \b
+INSTALL DATABASES:
+atavide install 
+\b
 RUN EXAMPLES:
 Required:           atavide run --input [file]
 Specify threads:    atavide run ... --threads [threads]
@@ -59,7 +62,25 @@ Available targets:
     all             Run everything (default)
     print_targets   List available targets
 """
+@click.command(epilog=help_msg_extra, context_settings=dict(help_option_names=["-h", "--help"], ignore_unknown_options=True))
+@common_options
+def install(configfile, threads, use_conda, conda_prefix, snake_default,
+        snake_args, **kwargs ):
+    """
+    The install function for databases
+    """
+    print("Checking and installing databases for atavide to directory 'databases'")
 
+    # run!
+    run_snakemake(
+        snakefile_path=snake_base(os.path.join('workflow', 'install.snakefile')),   # Full path to Snakefile
+        configfile=snake_base(os.path.join('config', 'databases.yaml')),
+        threads=threads,
+        use_conda=use_conda,
+        conda_prefix=conda_prefix,
+        snake_default_args=snake_default,
+        #snake_extra=snake_args,
+    )
 
 @click.command(epilog=help_msg_extra, context_settings=dict(help_option_names=["-h", "--help"], ignore_unknown_options=True))
 @click.option('--input', '_input', help='Input file/directory', type=str, required=True)
@@ -78,7 +99,7 @@ def run(_input, configfile, output, threads, use_conda, conda_prefix, snake_defa
 
     # run!
     run_snakemake(
-        snakefile_path=snake_base(os.path.join('workflow', 'Snakefile')),   # Full path to Snakefile
+        snakefile_path=snake_base(os.path.join('workflow', 'atavide.snakefile')),   # Full path to Snakefile
         configfile=configfile,
         merge_config=merge_config,
         threads=threads,
@@ -103,6 +124,7 @@ def citation(**kwargs):
 
 
 cli.add_command(run)
+cli.add_command(install)
 cli.add_command(config)
 cli.add_command(citation)
 

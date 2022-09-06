@@ -1,5 +1,5 @@
 # Snakemake config
-input:
+input: 'test-data'
 output: 'atavide.out'
 
 # sample name. Please don't use spaces or special characters here as it 
@@ -9,12 +9,15 @@ sample_id: 'atavide'
 # the description is not currently used, but its good practice to note what you are doing
 sample_description: "read based annotation, assembly and binning of metagenomes by atavide"
 
+#Databases 
+customDatabaseDirectory: "databases"
+
 # These are the directories where we read the data and store the output
 # feel free to change these names
 directories :
-  Reads: "fastq"
   prinseq: "QC"
   statistics: "statistics"
   read_based_annotations: "ReadAnnotations" 
   assemblies: "assemblies"
   binning: "binning"
+  temp_directory: "tmp"
