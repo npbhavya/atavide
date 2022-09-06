@@ -72,3 +72,32 @@ if len(set(EXTENSIONS)) != 1:
 FQEXTN = EXTENSIONS[0]
 PATTERN_R1 = '{sample}_R1' + FQEXTN
 PATTERN_R2 = '{sample}_R2' + FQEXTN
+
+""" Checking host contamination reference files
+For host contamination removal, the user has to provide their own database of sequences (fasta files) 
+Checking here to make sure we can find this file 
+"""
+if 'host_dbpath' in config['host_dbpath']:
+    print("host removal running")
+    #first checking if the path to the host database is set
+    if not 'host_dbname' in config['options']:
+        sys.stderr.write(f"ERROR: You have set host_dbpath as {config['host_dbpath']} but not defined the db_name\n")
+        sys.exit(0)
+    else:
+        #checking if the files are in fasta format
+        HOST=config['host_dbpath']
+        SEQ,EXTENSIONS, = glob_wildcards(os.path.join(HOST, '{sample}.{extn}'))
+        if len(set(EXTENSIONS)) == "fasta":
+            sys.stderr.write("FATAL: Not fasta file\n\t")
+            sys.exit(0)
+        if len(SEQ) !=1:
+            sys.stderr.write ("FATAL: Not a single file, run command 'cat *.fasta >host.fasta', and remove the other files\n")
+            sys.exit(0)
+
+    #Setting other folders
+    HOST=s.path.join(config['host_dbpath'])
+    PSEQDIR_TWO= os.path.join(config['output'], config['directories'], 'prinseq_after_hostremoval')
+    PSEQDIR=os.path.join(config['output'], config['directories'], 'prinseq_before_hostremoval')
+else:
+    PSEQDIR_TWO = PSEQDIR
+os.makedirs(PSEQDIR_TWO, exist_ok=True)

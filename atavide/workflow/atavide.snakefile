@@ -26,36 +26,6 @@ include: "rules/filechecks.snakefile"
 #superfocus_subsample_reads = 0
 #if 'superfocus_reads' in config['parameters']:
 #    superfocus_subsample_reads = config['parameters']['superfocus_reads']
-
-
-# do we want to do host removal?
-
-# we use an additional PSEQDIR variables here. PSEQDIR is the regular output from prinseq
-# if we are NOT doing host removal PSEQDIR AND PSEQDIR_TWO are the same
-# if we ARE doing host removal, they are not the same and so we have to make the 
-# second path
-if 'host_dbpath' in config['directories'] and config['directories']['host_dbpath']:
-    if not 'host_dbname' in config['options']:
-        sys.stderr.write(f"ERROR: You have set host_dbpath as {config['directories']['host_dbpath']} but not defined the db_name\n")
-        sys.exit(0)
-   
-    bt2l = os.path.join(config['directories']['host_dbpath'], f"{config['options']['host_dbname']}.1.bt2l")
-    bt2r = os.path.join(config['directories']['host_dbpath'], f"{config['options']['host_dbname']}.1.bt2")
-
-    if not (os.path.exists(bt2l) or os.path.exists(bt2r)):
-        sys.stderr.write(f"Error: don't seem to be able to find a bowtie2 index for {config['options']['host_dbname']}\n")
-        sys.stderr.write(f"\tWe looked for either of\n\t{bt2r}  or\n\t{bt2l}\n")
-        sys.exit(0)
-
-    PSEQDIR_TWO = f"{PSEQDIR}_after_hostremoval"
-
-    PSEQDIR = f"{PSEQDIR}_before_hostremoval"
-
-    include: "rules/deconseq.snakefile"
-else:
-    PSEQDIR_TWO = PSEQDIR
-
-os.makedirs(PSEQDIR_TWO, exist_ok=True)
 """
 
 """ TARGETS
@@ -66,14 +36,20 @@ include: "rules/targetsList.snakefile"
 
 # read the rules for running different pieces and parts of the code
 include: "rules/qc_qa.snakefile"
+include: "rules/deconseq.snakefile"
 
 rule all:
     input:
-        preprocess
+        preprocess,
+        contamination
 
 rule QC:
     input:
         preprocess
+
+rule HostRemoval:
+    input:
+        contamination
 
 """
 include: "rules/focus.snakefile"

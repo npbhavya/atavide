@@ -10,3 +10,9 @@ Runs only the QC step
 preprocess=[]
 
 preprocess.append(expand(os.path.join(PSEQDIR, "{sample}_good_out_R1.fastq.gz"),sample=SAMPLES))
+
+"""TARGETS: Host contamination
+After QC, runs the hostcontamination
+"""
+contamination=[]
+contamination.append(expand(os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq.gz"),sample=SAMPLES))

@@ -11,6 +11,9 @@ sample_description: "read based annotation, assembly and binning of metagenomes 
 
 #Databases 
 customDatabaseDirectory: "databases"
+#Optional database for host contamination removal step
+#uncomment if planning to run this step and provide a directory with sequences to check against
+host_dbpath: "human"
 
 # These are the directories where we read the data and store the output
 # feel free to change these names
