@@ -1,7 +1,0 @@
-name: raven
-channels:
-    - bioconda
-    - conda-forge
-    - defaults
-dependencies:
-    - raven-assembler
