@@ -3,10 +3,10 @@ Add your preflight checks as pure Python code here.
 e.g. Configure the run, declare directories, validate the input files etc.
 """
 
-
 """CONFIGURATION
 parsing the config to variables is not necessary, but it looks neater than typing out config["someParam"] every time.
 """
+
 READDIR = config['input']
 PSEQDIR = os.path.join(config['output'], config['directories']['prinseq'])
 STATS   = os.path.join(config['output'], config['directories']['statistics'])
@@ -46,14 +46,25 @@ else:
     sys.exit(1)
 
 #Where is the superfocus database?
-SFDB  = None
+SFDB = None
 if (config['customDatabaseDirectory']):
-    SFDB = os.path.join(config['customDatabaseDirectory'], "superfocus_db")
+    SFDB = os.path.join(config['customDatabaseDirectory'], 'superfocus_mmseqsDB', 'mmseqs')
 elif 'SUPERFOCUS_DB' in os.environ:
     SFDB = os.environ['SUPERFOCUS_DB']
 else:
     sys.stderr.write("FATAL: Superfocus database not installed, run 'atavide install'\n")
     sys.exit(1)
+
+#Setting krakendb variable
+KRKNDB = None
+if (config['customDatabaseDirectory']):
+    KRKNDB = os.path.join(config['customDatabaseDirectory'], 'kraken')
+elif 'KRAKEN2_DB_PATH' in os.environ:
+    KRKNDB= os.environ['KRAKEN2_DB_PATH']
+else:
+    sys.stderr.write("FATAL: Kraken2 database not installed, run 'atavide install'\n"))
+    sys.exit(1)
+
 
 """ CHECKING INPUT FILES
 A Snakemake regular expression matching the forward mate FASTQ files.
@@ -77,27 +88,24 @@ PATTERN_R2 = '{sample}_R2' + FQEXTN
 For host contamination removal, the user has to provide their own database of sequences (fasta files) 
 Checking here to make sure we can find this file 
 """
-if 'host_dbpath' in config['host_dbpath']:
-    print("host removal running")
-    #first checking if the path to the host database is set
-    if not 'host_dbname' in config['options']:
-        sys.stderr.write(f"ERROR: You have set host_dbpath as {config['host_dbpath']} but not defined the db_name\n")
+if config['host_dbpath']:
+    HOST=config['host_dbpath']
+    if not config['host_dbname']:
+        sys.stderr.write(f"ERROR: You have set host_dbpath as {config['host_dbpath']} but haven't defined the indices name\n")
+        sys.stderr.write(f"Set the host_dbname variable with the bowtie2 index name in config.yaml file\n")
         sys.exit(0)
-    else:
-        #checking if the files are in fasta format
-        HOST=config['host_dbpath']
-        SEQ,EXTENSIONS, = glob_wildcards(os.path.join(HOST, '{sample}.{extn}'))
-        if len(set(EXTENSIONS)) == "fasta":
-            sys.stderr.write("FATAL: Not fasta file\n\t")
-            sys.exit(0)
-        if len(SEQ) !=1:
-            sys.stderr.write ("FATAL: Not a single file, run command 'cat *.fasta >host.fasta', and remove the other files\n")
-            sys.exit(0)
+   
+    #bt2l = os.path.join(config['host_dbpath'], f"{config['host_dbname']}.1.bt2l")
+    bt2r = os.path.join(config['host_dbpath'], f"{config['host_dbname']}.1.bt2")
 
-    #Setting other folders
-    HOST=s.path.join(config['host_dbpath'])
-    PSEQDIR_TWO= os.path.join(config['output'], config['directories'], 'prinseq_after_hostremoval')
-    PSEQDIR=os.path.join(config['output'], config['directories'], 'prinseq_before_hostremoval')
+    if not os.path.exists(bt2r):
+        sys.stderr.write(f"Error: don't seem to be able to find a bowtie2 index for {config['host_dbname']}\n")
+        sys.stderr.write(f"\tWe looked for {bt2r}\n")
+        sys.exit(0)
+
+    PSEQDIR_TWO = f"{PSEQDIR}_after_hostremoval"
 else:
+    print("Skipping host removal step since the paths aren't set")
     PSEQDIR_TWO = PSEQDIR
+
 os.makedirs(PSEQDIR_TWO, exist_ok=True)

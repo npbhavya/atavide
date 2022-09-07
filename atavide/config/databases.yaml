@@ -1,17 +1,18 @@
 # config settings the user is NOT allowed to touch go in separate files
 # this example is for managing installation of database files
 
-#example 
-#mirror: "ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/"
-#databaseFiles:
-# - Pfam35.0/Pfam-A.hmm.gz
-
 #NCBi taxonomy database download
-mirror: "https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/"
-databaseFiles:
-  - taxdump.tar.gz
+ncbi: 'https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/'
+ncbi_file: 'taxdump.tar.gz'
+
+#kraken2 database download 
+#downloading kraken2 standard database that contains arachae, bacteria, viral, human and UniVec_core
+#documentation on this database, https://benlangmead.github.io/aws-indexes/k2
+kraken2db_standard: 'https://genome-idx.s3.amazonaws.com/kraken'
+#krakendb: 'k2_standard_20220607.tar.gz'
+#downloading the 8GB standard 
+krakendb: 'k2_standard_08gb_20220607.tar.gz'
 
 #Superfocus database download - need to fix this
-#mirror: "https://cloudstor.aarnet.edu.au/plus/s/bjYDqqDXK5u7JiF"
-#databaseFiles:
-# - Pfam35.0/Pfam-A.hmm.gz
+#Downloading the databases from cloudstor, https://cloudstor.aarnet.edu.au/plus/s/bjYDqqDXK5u7JiF
+superfocusdb_mmseqs2: 'https://cloudstor.aarnet.edu.au/plus/s/M1KHPaZbkABhmHL/download'

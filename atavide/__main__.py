@@ -64,12 +64,11 @@ Available targets:
 """
 @click.command(epilog=help_msg_extra, context_settings=dict(help_option_names=["-h", "--help"], ignore_unknown_options=True))
 @common_options
-def install(configfile, threads, use_conda, conda_prefix, snake_default,
-        snake_args, **kwargs ):
+def install(configfile, threads, use_conda, conda_prefix, snake_default, **kwargs ):
     """
     The install function for databases
     """
-    print("Checking and installing databases for atavide to directory 'databases'")
+    print("Checking and installing databases for atavide to directory")
 
     # run!
     run_snakemake(
@@ -79,7 +78,6 @@ def install(configfile, threads, use_conda, conda_prefix, snake_default,
         use_conda=use_conda,
         conda_prefix=conda_prefix,
         snake_default_args=snake_default,
-        #snake_extra=snake_args,
     )
 
 @click.command(epilog=help_msg_extra, context_settings=dict(help_option_names=["-h", "--help"], ignore_unknown_options=True))

@@ -1,6 +1,6 @@
-
-
-
+"""
+Read based annoation using Kraken2
+"""
 
 rule run_kraken:
     input:
@@ -11,8 +11,7 @@ rule run_kraken:
         ot = temporary(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.output.tsv"))
     threads: 8
     resources:
-        mem_mb=250000,
-        load_kraken=25
+        mem_mb=250000
     conda:
         "../envs/kraken.yaml"
     shell:
@@ -20,6 +19,7 @@ rule run_kraken:
         kraken2 --report {output.rt} \
                 --output {output.ot} \
                 --threads {threads} \
+                --DB KRKNDB
                 {input.r1}
         """
 

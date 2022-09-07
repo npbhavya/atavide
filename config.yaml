@@ -6,7 +6,8 @@ directories:
   read_based_annotations: ReadAnnotations
   statistics: statistics
   temp_directory: tmp
-host_dbpath: human
+host_dbname: null
+host_dbpath: null
 input: test-data
 output: atavide.out
 sample_description: read based annotation, assembly and binning of metagenomes by

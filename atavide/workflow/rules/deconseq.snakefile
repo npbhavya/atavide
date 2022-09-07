@@ -10,39 +10,30 @@
 #                                                          #
 ############################################################
 
-import os
-INTERIMDIR = "host_mapped"
+host_bt_index = os.path.join(config['host_dbpath'], config['host_dbname'])
 
-rule host_indices:
-    input:
-        h=os.path.join(HOST, "{host}.fasta")
-    params:
-        basename=os.path.join(HOST, "{host}-index")
-    conda:
-        "../envs/bowtie.yaml"
-    output:
-        output1=os.path.join(HOST, "{host}-index.1.bt2"),
-        output2=os.path.join(HOST, "{host}-index.2.bt2"),
-        output3=os.path.join(HOST, "{host}-index.3.bt2"),
-        output4=os.path.join(HOST, "{host}-index.4.bt2"),
-        outputrev1=os.path.join(HOST, "{host}-index.rev.1.bt2"),
-        outputrev2=os.path.join(HOST, "{host}-index.rev.2.bt2")
-    shell:
-        """
-        bowtie2-build {input.h} {params.basename}
-        """
+# set this to the location where you would like the results
+# written. We will make the directory if it doesn't exist
+INTERIMDIR = os.path.join(config['output'], "host_mapped")
+
+
+if not os.path.exists(host_bt_index + ".1.bt2") and not os.path.exists(host_bt_index + ".1.bt2l"):
+    sys.stderr.write(f"ERROR: Could not find the bowtie2 indexes for {host_bt_index}\n")
+    sys.stderr.write(f" - Did you build them with bowtie2-build?\n")
+    sys.stderr.write(f" - You may need to edit `host_dbpath` and `host_dbname` in the snakefile config\n")
+    sys.exit()
+
 
 rule btmap:
     input:
-        r1 = os.path.join(PSEQDIR, "{sample}_good_out_R1.fastq.gz"),
-        r2 = os.path.join(PSEQDIR, "{sample}_good_out_R2.fastq.gz"),
-        s1 = os.path.join(PSEQDIR, "{sample}_single_out_R1.fastq.gz"),
-        s2 = os.path.join(PSEQDIR, "{sample}_single_out_R2.fastq.gz"),
-        un=os.path.join(HOST, "{host}-index.1.bt2")
+        r1 = os.path.join(PSEQDIR, "{sample}_good_out_R1.fastq"),
+        r2 = os.path.join(PSEQDIR, "{sample}_good_out_R2.fastq"),
+        s1 = os.path.join(PSEQDIR, "{sample}_single_out_R1.fastq"),
+        s2 = os.path.join(PSEQDIR, "{sample}_single_out_R2.fastq"),
     output:
         os.path.join(INTERIMDIR, '{sample}.hostmapped.bam')
     params:
-        idx = os.path.join(HOST, "{host}-index")
+        idx = host_bt_index
     conda:
         "../envs/bowtie.yaml"
     threads: 16
@@ -134,22 +125,4 @@ rule single_reads_unmapped:
         """
         samtools fastq -@ {threads} -f 4 -F 1  {input} > {output.s1} &&
         touch {output.s2}
-        """
-
-rule compress_host_mapped_sequences:
-    """
-    Compress the host mapped data.
-    I am not sure this rule is used!
-    """
-    input:
-        os.path.join(INTERIMDIR, "{sample}_R1_mapped_to_host.fastq"),
-        os.path.join(INTERIMDIR, "{sample}_R2_mapped_to_host.fastq"),
-        os.path.join(INTERIMDIR, "{sample}_S_mapped_to_host.fastq"),
-    output:
-        os.path.join(INTERIMDIR, "{sample}_R1_mapped_to_host.fastq.gz"),
-        os.path.join(INTERIMDIR, "{sample}_R2_mapped_to_host.fastq.gz"),
-        os.path.join(INTERIMDIR, "{sample}_S_mapped_to_host.fastq.gz"),
-    shell:
-        """
-        for F in {input}; do gzip $F; done
         """

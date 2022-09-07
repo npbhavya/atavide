@@ -10,8 +10,6 @@
 #                                                                   #
 #####################################################################
 
-
-
 # how many rarefactions are we going to run?
 FRACTIONS = [i/10 for i in range(1, 10)]
 
