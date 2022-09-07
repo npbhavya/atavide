@@ -73,7 +73,6 @@ Note: Have to provide the directory, bowtie2 indices names in the config file
 *Module 3: Reads Annotation*
 
 - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
-- If host_dbpath and host_dbname set - will run through Host removal 
 - Taxanomic annotation using [kraken2](https://github.com/DerrickWood/kraken2)
 - Functional annotation using [SUPER_FOCUS](https://github.com/metageni/SUPER-FOCUS)
 To run this module, the command is 
