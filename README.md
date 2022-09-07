@@ -58,11 +58,23 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
 To run only this module run the command \
     `atavide run --input test-data --profile slurm -R QC`
-    
-Work in progress
 
-2. optional host removal using bowtie2 and samtools, [as described previously](https://edwards.flinders.edu.au/command-line-deconseq/). To enable this, you need to provide a path to the host db and a host db.
+*Module 2: Host contamination removal* 
+- QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
+- Bowtie2/samtools to remove reads that mapped to host
+Note: Have to provide the directory, bowtie2 indices names in the config file
 
+        #examples to add host removal 
+        host_dbpath: "host"
+        host_dbname: "GCA_000001405.15_GRCh38_full_analysis_set.fna.bowtie_index"
+
+*Module 3: Reads Annotation*
+- QC/QA
+- If host_dbpath and host_dbname set - will run through Host removal 
+- Taxanomic annotation using [kraken2](https://github.com/DerrickWood/kraken2)
+- Functional annotation using [SUPER_FOCUS](https://github.com/metageni/SUPER-FOCUS)
+
+*Work in progress**
 ### Metagenome assembly
 1. pairwise assembly of each sample using [megahit](https://github.com/voutcn/megahit)
 2. extraction of all reads that do not assemble using samtools flags
@@ -75,11 +87,9 @@ Work in progress
 2. [concoct](https://github.com/BinPro/CONCOCT)
 3. Pairwise comparisons using [turbocor](https://github.com/dcjones/turbocor) followed by clustering
 
-### Read-based annotations
-1. [Kraken2](https://ccb.jhu.edu/software/kraken2/)
-2. [singlem](https://github.com/wwood/singlem)
-3. [SUPER-focus](https://github.com/metageni/SUPER-FOCUS)
-4. [FOCUS](https://github.com/metageni/FOCUS)
+### Other Read-based annotations 
+1. [singlem](https://github.com/wwood/singlem)
+2. [FOCUS](https://github.com/metageni/FOCUS)
 
 Want something else added to the suite? File an issue on GitHub and we'll add it ASAP!
 
