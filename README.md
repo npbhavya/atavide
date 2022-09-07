@@ -54,12 +54,14 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
   This will run all the steps in atavide mentioned below, or you have the option of running each module one at a time
 
 ### Steps:
-*Module 1: Preprocessing only*
+*Module 1: Preprocessing only* 
+
 - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
 To run only this module run the command \
     `atavide run --input test-data --profile slurm -R QC`
 
 *Module 2: Host contamination removal* 
+
 - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
 - Bowtie2/samtools to remove reads that mapped to host
 Note: Have to provide the directory, bowtie2 indices names in the config file
@@ -69,12 +71,17 @@ Note: Have to provide the directory, bowtie2 indices names in the config file
         host_dbname: "GCA_000001405.15_GRCh38_full_analysis_set.fna.bowtie_index"
 
 *Module 3: Reads Annotation*
-- QC/QA
+
+- QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
 - If host_dbpath and host_dbname set - will run through Host removal 
 - Taxanomic annotation using [kraken2](https://github.com/DerrickWood/kraken2)
 - Functional annotation using [SUPER_FOCUS](https://github.com/metageni/SUPER-FOCUS)
-
+To run this module, the command is 
+     
+     `atavide run --input test-data --profile slurm -R ReadsAnnotation`
+     
 *Work in progress**
+
 ### Metagenome assembly
 1. pairwise assembly of each sample using [megahit](https://github.com/voutcn/megahit)
 2. extraction of all reads that do not assemble using samtools flags
