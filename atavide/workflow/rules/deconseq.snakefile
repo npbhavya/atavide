@@ -126,3 +126,14 @@ rule single_reads_unmapped:
         samtools fastq -@ {threads} -f 4 -F 1  {input} > {output.s1} &&
         touch {output.s2}
         """
+
+rule after_qc_stats:
+    """
+    Count the statistics after complete QC
+    """
+    input:
+        fqdir = PSEQDIR_TWO
+    output:
+        stats = os.path.join(STATS, "post_host_removal_qc_statistics.tsv")
+    script:
+        "../scripts/countfastq.py"

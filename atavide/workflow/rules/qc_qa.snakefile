@@ -3,6 +3,17 @@
 Rules for quality control and quality assurance
 """
 
+rule input_read_stats:
+    """
+    Count the statistics for the initial sequences
+    """
+    input:
+        fqdir = READDIR
+    output:
+        stats = os.path.join(STATS, "initial_read_statistics.tsv")
+    script:
+        "../scripts/countfastq.py"
+
 rule prinseq:
     input:
         r1 = os.path.join(READDIR, PATTERN_R1),

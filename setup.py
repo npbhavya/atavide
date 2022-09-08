@@ -2,7 +2,7 @@ import os
 from setuptools import setup
 
 def get_version():
-    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'atavide.VERSION')) as f:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'atavide', 'atavide.VERSION')) as f:
         return f.readline().strip()
 
 CLASSIFIERS = [
@@ -28,7 +28,8 @@ setup(
  py_modules=['atavide'],
  install_requires=["snakemake==7.14.0",
                    "pyyaml==6.0",
-                   "Click==8.1.3"],
+                   "Click==8.1.3",
+		    "yappi==1.3.6"],
  entry_points={
   'console_scripts': [
     'atavide=atavide.__main__:main'

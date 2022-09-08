@@ -50,7 +50,10 @@ include: "rules/kraken_taxonomy.snakefile"
 include: "rules/kraken_rarefaction.snakefile"
 include: "rules/superfocus.snakefile"
 include: "rules/round1_assembly.snakefile"
-
+include: "rules/round2_assembly.snakefile"
+include: "rules/statistics.snakefile"
+include: "rules/binning-metabat.snakefile"
+include: "rules/bin-refinement.snakefile"
 """
 Attemping to make atavide modular
 Current modules
@@ -64,11 +67,17 @@ rule all:
     input:
         preprocess,
         ReadsAnnot, 
-        assembly
+        assembly, 
+        binning
 
 rule QC:
     input:
-        preprocess, contamination
+        preprocess, 
+        
+rule HostRemoval:
+    input:
+        preprocess, 
+        contamination
 
 rule ReadAnnotations:
     input:
@@ -80,3 +89,8 @@ rule Assembly:
         preprocess, 
         assembly
 
+rule MAGS:
+    input:
+        preprocess,
+        assembly,
+        binning

@@ -88,7 +88,7 @@ def run(_input, configfile, output, threads, use_conda, conda_prefix, snake_defa
     """Run atavide"""
 
     # copy default config file if missing
-    copy_config(configfile, system_config=snake_base(os.path.join('config', 'config.yaml')))
+    #copy_config(configfile, system_config=snake_base(os.path.join('config', 'config.yaml')))
 
     # Config to add or update in configfile
     merge_config = {
@@ -98,7 +98,7 @@ def run(_input, configfile, output, threads, use_conda, conda_prefix, snake_defa
     # run!
     run_snakemake(
         snakefile_path=snake_base(os.path.join('workflow', 'atavide.snakefile')),   # Full path to Snakefile
-        configfile=configfile,
+        configfile=snake_base(os.path.join('config', 'config.yaml')),
         merge_config=merge_config,
         threads=threads,
         use_conda=use_conda,

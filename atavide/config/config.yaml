@@ -1,29 +1,15 @@
-# Snakemake config
-input: 'test-data'
-output: 'atavide.out'
-
-# sample name. Please don't use spaces or special characters here as it 
-# will be used for file names.
-sample_id: 'atavide'
-
-# the description is not currently used, but its good practice to note what you are doing
-sample_description: "read based annotation, assembly and binning of metagenomes by atavide"
-
-#Databases 
-customDatabaseDirectory: "databases"
-#Optional database for host contamination removal step
-#host_dbpath:
-#host_dbname:
-#examples to add host removal 
-host_dbpath: "host"
-host_dbname: "GCA_000001405.15_GRCh38_full_analysis_set.fna.bowtie_index"
-
-# These are the directories where we read the data and store the output
-# feel free to change these names
-directories :
-  prinseq: "QC"
-  statistics: "statistics"
-  read_based_annotations: "ReadAnnotations" 
-  assemblies: "assemblies"
-  binning: "binning"
-  temp_directory: "tmp"
+customDatabaseDirectory: databases
+directories:
+  assemblies: assemblies
+  binning: binning
+  prinseq: QC
+  read_based_annotations: ReadAnnotations
+  statistics: statistics
+  temp_directory: tmp
+host_dbname: GCA_000001405.15_GRCh38_full_analysis_set.fna.bowtie_index
+host_dbpath: host
+input: test-data
+output: atavide.out
+sample_description: read based annotation, assembly and binning of metagenomes by
+  atavide
+sample_id: atavide

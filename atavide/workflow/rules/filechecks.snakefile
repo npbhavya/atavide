@@ -14,8 +14,7 @@ STATS   = os.path.join(config['output'], config['directories']['statistics'])
 TMPDIR  = os.path.join(config['output'], config['directories']['temp_directory'])
 RBADIR  = os.path.join(config['output'], config['directories']['read_based_annotations'])
 METABAT = os.path.join(config['output'], config['directories']['binning'], 'metabat')
-CONCOCT = os.path.join(config['output'], config['directories']['binning'], 'concoct')
-ATAVIDE_BINNING = os.path.join(config['output'], config['directories']['binning'], 'atavide')
+GRAPHBIN = os.path.join(config['output'], config['directories']['binning'], 'graphbin')
 
 # assembly directories
 ASSDIR  = os.path.join(config['output'], config['directories']['assemblies'], "assembly.1")
@@ -90,7 +89,7 @@ For host contamination removal, the user has to provide their own database of se
 Checking here to make sure we can find this file 
 """
 if config['host_dbpath']:
-    print("Running host removal step since the paths aren set")
+    print("Running host removal step since the paths are set")
     HOST=config['host_dbpath']
     if not config['host_dbname']:
         sys.stderr.write(f"ERROR: You have set host_dbpath as {config['host_dbpath']} but haven't defined the indices name\n")

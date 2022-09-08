@@ -20,7 +20,6 @@ allDatabaseFiles = []
 allDatabaseFiles.append(os.path.join(databaseDir, 'taxdump', config['ncbi_file']))
 allDatabaseFiles.append(os.path.join(databaseDir, 'kraken', config['krakendb']))
 allDatabaseFiles.append(os.path.join(databaseDir, 'superfocus_mmseqsDB', 'mmseqs.zip'))
-allDatabaseFiles.append(os.path.join(host_dbpath, ))
 
 
 """RUN SNAKEMAKE"""

@@ -18,10 +18,10 @@ rule megahit_assemble:
         os.path.join(ASSDIR, "{sample}/log"),
         temporary(os.path.join(ASSDIR, "{sample}/checkpoints.txt")),
         temporary(os.path.join(ASSDIR, "{sample}/done")),
-        temporary(directory(os.path.join(ASSDIR, "{sample}/intermediate_contigs"))),
+        temporary(os.path.join(ASSDIR, "{sample}/intermediate_contigs")),
         temporary(os.path.join(ASSDIR, "{sample}/options.json"))
     params:
-        odir = directory(os.path.join(ASSDIR, '{sample}'))
+        odir = os.path.join(ASSDIR, '{sample}')
     threads: 32
     resources:
         mem_mb=64000,

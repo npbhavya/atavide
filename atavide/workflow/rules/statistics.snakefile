@@ -2,29 +2,6 @@
 The rules that generate statistics output
 """
 
-
-rule input_read_stats:
-    """
-    Count the statistics for the initial sequences
-    """
-    input:
-        fqdir = READDIR
-    output:
-        stats = os.path.join(STATS, "initial_read_statistics.tsv")
-    script:
-        "../scripts/countfastq.py"
-
-rule after_qc_stats:
-    """
-    Count the statistics after complete QC
-    """
-    input:
-        fqdir = PSEQDIR_TWO
-    output:
-        stats = os.path.join(STATS, "post_qc_statistics.tsv")
-    script:
-        "../scripts/countfastq.py"
-
 rule final_assembly_stats:
     input:
         os.path.join(config['directories']['assemblies'], f"{SAMPLE_ID}_assembly.fasta")
@@ -64,11 +41,6 @@ rule rpkm:
         """
         perl {params.sct} -t {input} > {output}
         """
-
-
-
-
-
 
 rule count_contig_lengths:
     input:
