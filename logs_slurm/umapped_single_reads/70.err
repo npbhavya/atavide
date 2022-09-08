@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	umapped_single_reads
+	1
+
+[Thu Sep  8 13:10:49 2022]
+rule umapped_single_reads:
+    input: atavide.out/assemblies/reads.contigs.1/SRR1237780.contigs.bam
+    output: atavide.out/assemblies/unassembled_reads/SRR1237780.unassembled.singles.fastq
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 8
+    resources: mem_mb=32000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+samtools fastq -@ 8 -f 4 -F 1 atavide.out/assemblies/reads.contigs.1/SRR1237780.contigs.bam > atavide.out/assemblies/unassembled_reads/SRR1237780.unassembled.singles.fastq
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/472d950e
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+[Thu Sep  8 13:11:20 2022]
+Finished job 0.
+1 of 1 steps (100%) done

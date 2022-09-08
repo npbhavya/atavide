@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	prinseq
+	1
+
+[Thu Sep  8 08:17:46 2022]
+rule prinseq:
+    input: test-data/SRR1237782_R1.fastq, test-data/SRR1237782_R2.fastq
+    output: atavide.out/QC/SRR1237782_good_out_R1.fastq, atavide.out/QC/SRR1237782_good_out_R2.fastq, atavide.out/QC/SRR1237782_single_out_R1.fastq, atavide.out/QC/SRR1237782_single_out_R2.fastq
+    jobid: 0
+    wildcards: sample=SRR1237782
+    threads: 16
+    resources: mem_mb=2000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+            prinseq++ -min_len 60 -min_qual_mean 25 -ns_max_n 1 -derep 1                     -out_format 0 -trim_tail_left 5 -trim_tail_right 5                     -ns_max_n 5  -trim_qual_type min -trim_qual_left 30                     -trim_qual_right 30 -trim_qual_window 10                     -threads 16                     -out_name atavide.out/QC/SRR1237782                     -out_bad /dev/null                     -out_bad2 /dev/null                     -fastq test-data/SRR1237782_R1.fastq                     -fastq2 test-data/SRR1237782_R2.fastq;
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/4286bbf7
+[Thu Sep  8 08:17:56 2022]
+Finished job 0.
+1 of 1 steps (100%) done

@@ -1,0 +1,196 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_superfocus
+	1
+
+[Thu Sep  8 13:03:29 2022]
+rule run_superfocus:
+    input: atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 16
+    resources: mem_mb=64000, time=7200, load_superfocus=25, load_kraken=0, load_onehundred=0
+
+
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+mkdir: cannot create directory ‘atavide.out/ReadAnnotations/SRR1237780/superfocus’: File exists
+[Thu Sep  8 13:04:49 2022]
+Error in rule run_superfocus:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+    shell:
+        
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_superfocus
+	1
+
+[Thu Sep  8 13:05:23 2022]
+rule run_superfocus:
+    input: atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 16
+    resources: mem_mb=64000, time=7200, load_superfocus=25, load_kraken=0, load_onehundred=0
+
+
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+mkdir: cannot create directory ‘atavide.out/ReadAnnotations/SRR1237780/superfocus’: File exists
+[Thu Sep  8 13:06:19 2022]
+Error in rule run_superfocus:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+    shell:
+        
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_superfocus
+	1
+
+[Thu Sep  8 13:23:55 2022]
+rule run_superfocus:
+    input: atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 16
+    resources: mem_mb=64000, time=7200, load_superfocus=25, load_kraken=0, load_onehundred=0
+
+
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+mkdir: cannot create directory ‘atavide.out/ReadAnnotations/SRR1237780/superfocus’: File exists
+[Thu Sep  8 13:24:25 2022]
+Error in rule run_superfocus:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+    shell:
+        
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_superfocus
+	1
+
+[Thu Sep  8 13:24:54 2022]
+rule run_superfocus:
+    input: atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 16
+    resources: mem_mb=64000, time=7200, load_superfocus=25, load_kraken=0, load_onehundred=0
+
+
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+mkdir: cannot create directory ‘atavide.out/ReadAnnotations/SRR1237780/superfocus’: File exists
+[Thu Sep  8 13:25:24 2022]
+Error in rule run_superfocus:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+    shell:
+        
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)             -db databases/superfocus_mmseqsDB/mmseqs2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	run_superfocus
+	1
+
+[Thu Sep  8 13:46:25 2022]
+rule run_superfocus:
+    input: atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq
+    output: atavide.out/ReadAnnotations/SRR1237780/superfocus/output_all_levels_and_function.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_1.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_2.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/output_subsystem_level_3.xls, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R1.fastq_alignments.m8, atavide.out/ReadAnnotations/SRR1237780/superfocus/SRR1237780_good_out_R2.fastq_alignments.m8
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 16
+    resources: mem_mb=64000, time=7200, load_superfocus=25, load_kraken=0, load_onehundred=0
+
+
+        if [[ -s atavide.out/ReadAnnotations/SRR1237780/superfocus ]]; then
+            rmdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        fi
+        mkdir atavide.out/ReadAnnotations/SRR1237780/superfocus
+        superfocus -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq -q atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq -dir atavide.out/ReadAnnotations/SRR1237780/superfocus -a mmseqs2 -t 16 -n 0             -tmp $(mktemp -d -p atavide.out/tmp)
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/a444296e
+[2022-09-08 13:47:11,434 - INFO] SUPER-FOCUS: A tool for agile functional analysis of shotgun metagenomic data
+[2022-09-08 13:47:11,470 - INFO] Using atavide.out/tmp/tmp.1zyPsM3cj3/tmph6hw_4c2 as the temporary directory
+[2022-09-08 13:47:11,596 - INFO] 1.1) Working on: atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq
+[2022-09-08 13:47:11,596 - INFO]    Aligning sequences in atavide.out/QC_after_hostremoval/SRR1237780_good_out_R1.fastq to 90 using mmseqs
+[2022-09-08 13:48:46,880 - INFO]    Parsing Alignments
+[2022-09-08 13:48:48,723 - INFO] 1.2) Working on: atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq
+[2022-09-08 13:48:48,724 - INFO]    Aligning sequences in atavide.out/QC_after_hostremoval/SRR1237780_good_out_R2.fastq to 90 using mmseqs
+[2022-09-08 13:49:48,052 - INFO]    Parsing Alignments
+[2022-09-08 13:49:49,587 - INFO] Writting results at atavide.out/ReadAnnotations/SRR1237780/superfocus
+[2022-09-08 13:49:49,859 - INFO]   Working on writing binning
+[2022-09-08 13:49:49,860 - INFO]   Working on subsystem level 1
+[2022-09-08 13:49:49,894 - INFO]   Working on subsystem level 2
+[2022-09-08 13:49:49,950 - INFO]   Working on subsystem level 3
+[2022-09-08 13:49:50,018 - INFO]   Working on Combined output
+[2022-09-08 13:49:50,251 - INFO] Done
+[Thu Sep  8 13:49:50 2022]
+Finished job 0.
+1 of 1 steps (100%) done

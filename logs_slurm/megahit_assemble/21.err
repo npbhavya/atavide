@@ -1,0 +1,67 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	megahit_assemble
+	1
+
+[Thu Sep  8 13:04:46 2022]
+rule megahit_assemble:
+    input: atavide.out/QC_after_hostremoval/SRR1237783_good_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237783_good_out_R2.fastq, atavide.out/QC_after_hostremoval/SRR1237783_single_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237783_single_out_R2.fastq
+    output: atavide.out/assemblies/assembly.1/SRR1237783/final.contigs.fa, atavide.out/assemblies/assembly.1/SRR1237783/log, atavide.out/assemblies/assembly.1/SRR1237783/checkpoints.txt, atavide.out/assemblies/assembly.1/SRR1237783/done, atavide.out/assemblies/assembly.1/SRR1237783/intermediate_contigs, atavide.out/assemblies/assembly.1/SRR1237783/options.json
+    jobid: 0
+    wildcards: sample=SRR1237783
+    threads: 32
+    resources: mem_mb=64000, time=7200, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+        rmdir atavide.out/assemblies/assembly.1/SRR1237783 ; 
+        megahit -1 atavide.out/QC_after_hostremoval/SRR1237783_good_out_R1.fastq -2 atavide.out/QC_after_hostremoval/SRR1237783_good_out_R2.fastq -r atavide.out/QC_after_hostremoval/SRR1237783_single_out_R1.fastq -r atavide.out/QC_after_hostremoval/SRR1237783_single_out_R2.fastq                 -o atavide.out/assemblies/assembly.1/SRR1237783 -t 32 --mem-flag 2
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/de5d24b2
+2022-09-08 13:04:54 - MEGAHIT v1.2.9
+2022-09-08 13:04:54 - Using megahit_core with POPCNT and BMI2 support
+2022-09-08 13:04:54 - Convert reads to binary library
+2022-09-08 13:04:54 - b'INFO  sequence/io/sequence_lib.cpp  :   75 - Lib 0 (/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237783_good_out_R1.fastq,/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237783_good_out_R2.fastq): pe, 47862 reads, 101 max length'
+2022-09-08 13:04:54 - b'INFO  sequence/io/sequence_lib.cpp  :   75 - Lib 1 (/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237783_single_out_R1.fastq): se, 0 reads, 0 max length'
+2022-09-08 13:04:54 - b'INFO  sequence/io/sequence_lib.cpp  :   75 - Lib 2 (/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237783_single_out_R2.fastq): se, 0 reads, 0 max length'
+2022-09-08 13:04:54 - b'INFO  utils/utils.h                 :  152 - Real: 0.4641\tuser: 0.0275\tsys: 0.0114\tmaxrss: 13908'
+2022-09-08 13:04:55 - k-max reset to: 119 
+2022-09-08 13:04:55 - Start assembly. Number of CPU threads 32 
+2022-09-08 13:04:55 - k list: 21,29,39,59,79,99,119 
+2022-09-08 13:04:55 - Memory used: 1936269611827
+2022-09-08 13:04:55 - Extract solid (k+1)-mers for k = 21 
+2022-09-08 13:04:55 - Build graph for k = 21 
+2022-09-08 13:04:56 - Assemble contigs from SdBG for k = 21
+2022-09-08 13:04:57 - Local assembly for k = 21
+2022-09-08 13:04:57 - Extract iterative edges from k = 21 to 29 
+2022-09-08 13:04:57 - Build graph for k = 29 
+2022-09-08 13:04:58 - Assemble contigs from SdBG for k = 29
+2022-09-08 13:04:58 - Local assembly for k = 29
+2022-09-08 13:04:59 - Extract iterative edges from k = 29 to 39 
+2022-09-08 13:04:59 - Build graph for k = 39 
+2022-09-08 13:05:00 - Assemble contigs from SdBG for k = 39
+2022-09-08 13:05:01 - Local assembly for k = 39
+2022-09-08 13:05:01 - Extract iterative edges from k = 39 to 59 
+2022-09-08 13:05:01 - Build graph for k = 59 
+2022-09-08 13:05:02 - Assemble contigs from SdBG for k = 59
+2022-09-08 13:05:03 - Local assembly for k = 59
+2022-09-08 13:05:03 - Extract iterative edges from k = 59 to 79 
+2022-09-08 13:05:03 - Build graph for k = 79 
+2022-09-08 13:05:03 - Assemble contigs from SdBG for k = 79
+2022-09-08 13:05:04 - Local assembly for k = 79
+2022-09-08 13:05:04 - Extract iterative edges from k = 79 to 99 
+2022-09-08 13:05:05 - Build graph for k = 99 
+2022-09-08 13:05:05 - Assemble contigs from SdBG for k = 99
+2022-09-08 13:05:06 - Local assembly for k = 99
+2022-09-08 13:05:06 - Extract iterative edges from k = 99 to 119 
+2022-09-08 13:05:06 - Build graph for k = 119 
+2022-09-08 13:05:07 - Assemble contigs from SdBG for k = 119
+2022-09-08 13:05:08 - Merging to output final contigs 
+2022-09-08 13:05:08 - 13 contigs, total 11697 bp, min 233 bp, max 5343 bp, avg 899 bp, N50 1325 bp
+2022-09-08 13:05:08 - ALL DONE. Time elapsed: 14.110384 seconds 
+[Thu Sep  8 13:05:08 2022]
+Finished job 0.
+1 of 1 steps (100%) done

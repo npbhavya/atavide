@@ -1,0 +1,40 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	btmap
+	1
+
+[Thu Sep  8 09:13:33 2022]
+rule btmap:
+    input: atavide.out/QC/SRR1237782_good_out_R1.fastq, atavide.out/QC/SRR1237782_good_out_R2.fastq, atavide.out/QC/SRR1237782_single_out_R1.fastq, atavide.out/QC/SRR1237782_single_out_R2.fastq
+    output: atavide.out/host_mapped/SRR1237782.hostmapped.bam
+    jobid: 0
+    wildcards: sample=SRR1237782
+    threads: 16
+    resources: mem_mb=64000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+		bowtie2 --mm -p 16 -x host/GCA_000001405.15_GRCh38_full_analysis_set.fna.bowtie_index -1 atavide.out/QC/SRR1237782_good_out_R1.fastq -2 atavide.out/QC/SRR1237782_good_out_R2.fastq          | samtools view -@ 16 -bh | samtools sort -o atavide.out/host_mapped/SRR1237782.hostmapped.bam -
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/472d950e
+24132 reads; of these:
+  24132 (100.00%) were paired; of these:
+    24120 (99.95%) aligned concordantly 0 times
+    10 (0.04%) aligned concordantly exactly 1 time
+    2 (0.01%) aligned concordantly >1 times
+    ----
+    24120 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    24120 pairs aligned 0 times concordantly or discordantly; of these:
+      48240 mates make up the pairs; of these:
+        48239 (100.00%) aligned 0 times
+        0 (0.00%) aligned exactly 1 time
+        1 (0.00%) aligned >1 times
+0.05% overall alignment rate
+[Thu Sep  8 09:13:47 2022]
+Finished job 0.
+1 of 1 steps (100%) done

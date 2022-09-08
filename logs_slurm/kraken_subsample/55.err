@@ -1,0 +1,130 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_subsample
+	1
+
+[Wed Sep  7 15:12:51 2022]
+rule kraken_subsample:
+    input: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+    output: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv
+    jobid: 0
+    wildcards: sample=SRR1237783, frac=0.7
+    threads: 8
+    resources: mem_mb=256000, time=1440, load_superfocus=0, load_kraken=50, load_onehundred=0
+
+
+        kraken2 --report atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv                 --threads 8                 atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/330fb15b
+kraken2: Must specify DB with either --db or $KRAKEN2_DEFAULT_DB
+[Wed Sep  7 15:12:54 2022]
+Error in rule kraken_subsample:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/330fb15b
+    shell:
+        
+        kraken2 --report atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv                 --threads 8                 atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_subsample
+	1
+
+[Wed Sep  7 15:13:04 2022]
+rule kraken_subsample:
+    input: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+    output: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv
+    jobid: 0
+    wildcards: sample=SRR1237783, frac=0.7
+    threads: 8
+    resources: mem_mb=256000, time=1440, load_superfocus=0, load_kraken=50, load_onehundred=0
+
+
+        kraken2 --report atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv                 --threads 8                 atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/330fb15b
+kraken2: Must specify DB with either --db or $KRAKEN2_DEFAULT_DB
+[Wed Sep  7 15:13:07 2022]
+Error in rule kraken_subsample:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/330fb15b
+    shell:
+        
+        kraken2 --report atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv                 --threads 8                 atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_subsample
+	1
+
+[Wed Sep  7 15:29:34 2022]
+rule kraken_subsample:
+    input: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+    output: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv
+    jobid: 0
+    wildcards: sample=SRR1237783, frac=0.7
+    threads: 8
+    resources: mem_mb=256000, time=1440, load_superfocus=0, load_kraken=50, load_onehundred=0
+
+
+        kraken2 --report atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.0.7.tsv                 --threads 8                 --db databases/kraken                 atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783_good_out_R1.0.7.fastq
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/330fb15b
+Loading database information... done.
+16815 sequences (1.68 Mbp) processed in 0.143s (7059.8 Kseq/m, 706.36 Mbp/m).
+  3877 sequences classified (23.06%)
+  12938 sequences unclassified (76.94%)
+[Wed Sep  7 15:29:40 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_subsample
+	1
+
+[Thu Sep  8 08:22:39 2022]
+rule kraken_subsample:
+    input: atavide.out/ReadAnnotations/SRR1237782/kraken/SRR1237782_good_out_R1.0.9.fastq
+    output: atavide.out/ReadAnnotations/SRR1237782/kraken/SRR1237782.report.0.9.tsv
+    jobid: 0
+    wildcards: sample=SRR1237782, frac=0.9
+    threads: 8
+    resources: mem_mb=256000, time=1440, load_superfocus=0, load_kraken=50, load_onehundred=0
+
+
+        kraken2 --report atavide.out/ReadAnnotations/SRR1237782/kraken/SRR1237782.report.0.9.tsv                 --threads 8                 --db databases/kraken                 atavide.out/ReadAnnotations/SRR1237782/kraken/SRR1237782_good_out_R1.0.9.fastq
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/330fb15b
+Loading database information... done.
+21704 sequences (2.17 Mbp) processed in 0.092s (14191.8 Kseq/m, 1419.95 Mbp/m).
+  5810 sequences classified (26.77%)
+  15894 sequences unclassified (73.23%)
+[Thu Sep  8 08:22:44 2022]
+Finished job 0.
+1 of 1 steps (100%) done

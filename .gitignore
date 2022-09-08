@@ -140,3 +140,4 @@ conda
 #database
 databases
 host 
+atavide/workflow/databaseDir

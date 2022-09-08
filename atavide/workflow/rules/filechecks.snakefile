@@ -9,6 +9,7 @@ parsing the config to variables is not necessary, but it looks neater than typin
 
 READDIR = config['input']
 PSEQDIR = os.path.join(config['output'], config['directories']['prinseq'])
+PSEQDIR_TWO = f"{PSEQDIR}_after_hostremoval"
 STATS   = os.path.join(config['output'], config['directories']['statistics'])
 TMPDIR  = os.path.join(config['output'], config['directories']['temp_directory'])
 RBADIR  = os.path.join(config['output'], config['directories']['read_based_annotations'])
@@ -38,7 +39,7 @@ Setting the taxonomy database
 """
 TAXON = None
 if (config['customDatabaseDirectory']):
-   TAXON= os.path.join(config['customDatabaseDirectory'], "taxdump.tar.gz")
+   TAXON= os.path.join(config['customDatabaseDirectory'], "taxdump")
 elif 'NCBI_TAXONOMY' in os.environ:
     TAXON = os.environ['NCBI_TAXONOMY']
 else:
@@ -48,7 +49,7 @@ else:
 #Where is the superfocus database?
 SFDB = None
 if (config['customDatabaseDirectory']):
-    SFDB = os.path.join(config['customDatabaseDirectory'], 'superfocus_mmseqsDB', 'mmseqs')
+    SFDB = os.path.join(config['customDatabaseDirectory'], 'superfocus_mmseqsDB', 'mmseqs2')
 elif 'SUPERFOCUS_DB' in os.environ:
     SFDB = os.environ['SUPERFOCUS_DB']
 else:
@@ -62,7 +63,7 @@ if (config['customDatabaseDirectory']):
 elif 'KRAKEN2_DB_PATH' in os.environ:
     KRKNDB= os.environ['KRAKEN2_DB_PATH']
 else:
-    sys.stderr.write("FATAL: Kraken2 database not installed, run 'atavide install'\n"))
+    sys.stderr.write("FATAL: Kraken2 database not installed, run 'atavide install'\n")
     sys.exit(1)
 
 
@@ -89,6 +90,7 @@ For host contamination removal, the user has to provide their own database of se
 Checking here to make sure we can find this file 
 """
 if config['host_dbpath']:
+    print("Running host removal step since the paths aren set")
     HOST=config['host_dbpath']
     if not config['host_dbname']:
         sys.stderr.write(f"ERROR: You have set host_dbpath as {config['host_dbpath']} but haven't defined the indices name\n")
@@ -102,10 +104,5 @@ if config['host_dbpath']:
         sys.stderr.write(f"Error: don't seem to be able to find a bowtie2 index for {config['host_dbname']}\n")
         sys.stderr.write(f"\tWe looked for {bt2r}\n")
         sys.exit(0)
-
-    PSEQDIR_TWO = f"{PSEQDIR}_after_hostremoval"
 else:
     print("Skipping host removal step since the paths aren't set")
-    PSEQDIR_TWO = PSEQDIR
-
-os.makedirs(PSEQDIR_TWO, exist_ok=True)

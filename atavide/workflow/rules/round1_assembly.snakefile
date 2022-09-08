@@ -4,44 +4,6 @@ This round does a megahit assembly, and then maps the reads back to all
 the contigs. We then find unassembled reads and concatenate them
 """
 
-
-
-
-rule megahit_assemble_gpu:
-    """
-    Note this is how to do the assembly using GPUs, but
-    according to megahit they don't really support this
-    so I bypass it and use CPUs
-    """
-    input:
-        r1 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),
-        r2 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R2.fastq"),
-        s1 = os.path.join(PSEQDIR_TWO, "{sample}_single_out_R1.fastq"),
-        s2 = os.path.join(PSEQDIR_TWO, "{sample}_single_out_R2.fastq")
-    output:
-        os.path.join(ASSDIR, "{sample}_gpu/final.contigs.fa"),
-        os.path.join(ASSDIR, "{sample}_gpu/log"),
-        temporary(os.path.join(ASSDIR, "{sample}_gpu/checkpoints.txt")),
-        temporary(os.path.join(ASSDIR, "{sample}_gpu/done")),
-        temporary(directory(os.path.join(ASSDIR, "{sample}_gpu/intermediate_contigs"))),
-        temporary(os.path.join(ASSDIR, "{sample}_gpu/options.json"))
-    params:
-        odir = directory(os.path.join(ASSDIR, '{sample}_gpu'))
-    threads: 16
-    resources:
-        mem_mb=64000,
-        time=7200,
-        gpu=1,
-        partition="gpu"
-    conda:
-        "../envs/megahit.yaml"
-    shell:
-        """
-        rmdir {params.odir} ; 
-        megahit -1 {input.r1} -2 {input.r2} -r {input.s1} -r {input.s2} \
-                -o {params.odir} -t {threads} --use-gpu --mem-flag 2
-        """
-
 rule megahit_assemble:
     """
     This version uses CPUs to do the assembly

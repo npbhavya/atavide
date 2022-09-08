@@ -17,8 +17,7 @@ rule run_superfocus:
         r1 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),
         r2 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R2.fastq")
     output:
-        d = directory(os.path.join(RBADIR, "{sample}", "superfocus")),
-        a = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_all_levels_and_function.xls")),
+        a = os.path.join(RBADIR, "{sample}", "superfocus", "output_all_levels_and_function.xls"),
         l1 = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_1.xls")),
         l2 = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_2.xls")),
         l3 = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_3.xls")),
@@ -26,7 +25,9 @@ rule run_superfocus:
         m82 = os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R2.fastq_alignments.m8"),
     threads: 16
     params: 
-        TMPDIR=TMPDIR
+        TMPDIR=TMPDIR, 
+        db= SFDB,
+        d = os.path.join(RBADIR, "{sample}", "superfocus")
     resources:
         mem_mb=64000,
         load_superfocus=25,
@@ -35,7 +36,12 @@ rule run_superfocus:
         "../envs/superfocus.yaml"
     shell:
         """
-        superfocus -q {input.r1} -q {input.r2} -dir {output.d} -a mmseqs2 -t {threads} -n 0 -tmp $(mktemp -d -p {params.TMPDIR})
+        if [[ -s {params.d} ]]; then
+            rmdir {params.d}
+        fi
+        mkdir {params.d}
+        superfocus -q {input.r1} -q {input.r2} -dir {params.d} -a mmseqs2 -t {threads} -n 0 \
+            -tmp $(mktemp -d -p {params.TMPDIR})
         """
 
 rule merge_sf_outputs:
@@ -50,9 +56,6 @@ rule merge_sf_outputs:
         """
         perl {params.sct} {input}  > {params.out} && gzip {params.out}
         """
-
-
-
 
 """
 In the rules below we use the m8 files from superfocus
@@ -82,9 +85,6 @@ rule superfocus_taxonomy:
           --fill-miss-rank | \
         cut -f 1,2,4 > {output}
         """
-
-
-
 
 rule zip_compress_superfocus:
     input:

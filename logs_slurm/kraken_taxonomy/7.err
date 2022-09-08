@@ -1,0 +1,103 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_taxonomy
+	1
+
+[Wed Sep  7 15:10:51 2022]
+rule kraken_taxonomy:
+    input: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv
+    output: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 4
+    resources: mem_mb=40000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+        grep -v ^U atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv |         taxonkit lineage -j 4 -i 3 --data-dir databases/taxdump.tar.gz |         taxonkit reformat -j 4 --data-dir databases/taxdump.tar.gz -i 6 -f         "Root; d__{k}; p__{p}; c__{c}; o__{o}; f__{f}; g__{g}"         --fill-miss-rank | cut -f 2,3,7 > atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/5bd1a470
+15:10:54.398 [31m[ERRO][0m mkdir databases/taxdump.tar.gz: not a directory
+15:10:54.398 [31m[ERRO][0m mkdir databases/taxdump.tar.gz: not a directory
+[Wed Sep  7 15:10:54 2022]
+Error in rule kraken_taxonomy:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/5bd1a470
+    shell:
+        
+        grep -v ^U atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv |         taxonkit lineage -j 4 -i 3 --data-dir databases/taxdump.tar.gz |         taxonkit reformat -j 4 --data-dir databases/taxdump.tar.gz -i 6 -f         "Root; d__{k}; p__{p}; c__{c}; o__{o}; f__{f}; g__{g}"         --fill-miss-rank | cut -f 2,3,7 > atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job kraken_taxonomy since they might be corrupted:
+atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_taxonomy
+	1
+
+[Wed Sep  7 15:11:14 2022]
+rule kraken_taxonomy:
+    input: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv
+    output: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 4
+    resources: mem_mb=40000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+        grep -v ^U atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv |         taxonkit lineage -j 4 -i 3 --data-dir databases/taxdump.tar.gz |         taxonkit reformat -j 4 --data-dir databases/taxdump.tar.gz -i 6 -f         "Root; d__{k}; p__{p}; c__{c}; o__{o}; f__{f}; g__{g}"         --fill-miss-rank | cut -f 2,3,7 > atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/5bd1a470
+15:11:17.683 [31m[ERRO][0m mkdir databases/taxdump.tar.gz: not a directory
+15:11:17.684 [31m[ERRO][0m mkdir databases/taxdump.tar.gz: not a directory
+[Wed Sep  7 15:11:17 2022]
+Error in rule kraken_taxonomy:
+    jobid: 0
+    output: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+    conda-env: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/5bd1a470
+    shell:
+        
+        grep -v ^U atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv |         taxonkit lineage -j 4 -i 3 --data-dir databases/taxdump.tar.gz |         taxonkit reformat -j 4 --data-dir databases/taxdump.tar.gz -i 6 -f         "Root; d__{k}; p__{p}; c__{c}; o__{o}; f__{f}; g__{g}"         --fill-miss-rank | cut -f 2,3,7 > atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job kraken_taxonomy since they might be corrupted:
+atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_taxonomy
+	1
+
+[Wed Sep  7 15:27:37 2022]
+rule kraken_taxonomy:
+    input: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv
+    output: atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+    jobid: 0
+    wildcards: sample=SRR1237780
+    threads: 4
+    resources: mem_mb=40000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+        grep -v ^U atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.output.tsv |         taxonkit lineage -j 4 -i 3 --data-dir databases/taxdump |         taxonkit reformat -j 4 --data-dir databases/taxdump -i 6 -f         "Root; d__{k}; p__{p}; c__{c}; o__{o}; f__{f}; g__{g}"         --fill-miss-rank | cut -f 2,3,7 > atavide.out/ReadAnnotations/SRR1237780/kraken/SRR1237780.taxonomy.tsv
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/5bd1a470
+[Wed Sep  7 15:27:49 2022]
+Finished job 0.
+1 of 1 steps (100%) done

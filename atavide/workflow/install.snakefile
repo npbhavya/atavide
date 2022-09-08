@@ -17,9 +17,10 @@ DATABASES = config['customDatabaseDirectory']
 
 """TARGETS"""
 allDatabaseFiles = []
-allDatabaseFiles.append(os.path.join(databaseDir, config['ncbi_file']))
+allDatabaseFiles.append(os.path.join(databaseDir, 'taxdump', config['ncbi_file']))
 allDatabaseFiles.append(os.path.join(databaseDir, 'kraken', config['krakendb']))
 allDatabaseFiles.append(os.path.join(databaseDir, 'superfocus_mmseqsDB', 'mmseqs.zip'))
+allDatabaseFiles.append(os.path.join(host_dbpath, ))
 
 
 """RUN SNAKEMAKE"""
@@ -32,11 +33,11 @@ rule download_taxadb_file:
     params:
         ncbi =os.path.join(config['ncbi'], config['ncbi_file'])
     output:
-        os.path.join(databaseDir, config['ncbi_file'])
+        os.path.join(databaseDir, 'taxdump', config['ncbi_file'])
     shell:
         """
             curl -Lo {output} {params.ncbi}
-            unzip {output}
+            tar -xvzf {output}
         """
         
 rule download_krakendb_file:
@@ -59,4 +60,5 @@ rule download_superfocus_file:
         """
             curl -Lo {output} {params.superfocus}
             unzip {output}
+            find . -name "*.zip" -exec unzip {} \;
         """

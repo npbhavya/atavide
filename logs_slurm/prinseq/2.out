@@ -1,0 +1,6 @@
+326 reads removed by -min_len
+547 reads removed by -min_qual_mean
+34 reads removed by -ns_max_n
+38 reads removed by -derep
+197 reads removed by -trim_qual_left
+Skipping host removal step since the paths aren't set

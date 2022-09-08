@@ -1,0 +1,48 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_genera
+	1
+
+[Wed Sep  7 15:13:14 2022]
+rule kraken_genera:
+    input: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.tsv
+    output: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.genera_fraction.tsv
+    jobid: 0
+    wildcards: sample=SRR1237783
+    resources: mem_mb=2000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+        echo "Family	SRR1237783" > atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.genera_fraction.tsv;
+        cat atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.tsv | sed -e 's/Candidatus//' |         awk '{if ($4 == "G") {printf "%s\t%f\n", $6, $1}; }' >> atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.genera_fraction.tsv
+        
+[Wed Sep  7 15:13:14 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	kraken_genera
+	1
+
+[Wed Sep  7 15:29:22 2022]
+rule kraken_genera:
+    input: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.tsv
+    output: atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.genera_fraction.tsv
+    jobid: 0
+    wildcards: sample=SRR1237783
+    resources: mem_mb=2000, time=1440, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+        echo "Family	SRR1237783" > atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.genera_fraction.tsv;
+        cat atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.report.tsv | sed -e 's/Candidatus//' |         awk '{if ($4 == "G") {printf "%s\t%f\n", $6, $1}; }' >> atavide.out/ReadAnnotations/SRR1237783/kraken/SRR1237783.genera_fraction.tsv
+        
+[Wed Sep  7 15:29:22 2022]
+Finished job 0.
+1 of 1 steps (100%) done

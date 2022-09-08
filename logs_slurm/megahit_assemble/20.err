@@ -1,0 +1,57 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	megahit_assemble
+	1
+
+[Thu Sep  8 13:06:15 2022]
+rule megahit_assemble:
+    input: atavide.out/QC_after_hostremoval/SRR1237782_good_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237782_good_out_R2.fastq, atavide.out/QC_after_hostremoval/SRR1237782_single_out_R1.fastq, atavide.out/QC_after_hostremoval/SRR1237782_single_out_R2.fastq
+    output: atavide.out/assemblies/assembly.1/SRR1237782/final.contigs.fa, atavide.out/assemblies/assembly.1/SRR1237782/log, atavide.out/assemblies/assembly.1/SRR1237782/checkpoints.txt, atavide.out/assemblies/assembly.1/SRR1237782/done, atavide.out/assemblies/assembly.1/SRR1237782/intermediate_contigs, atavide.out/assemblies/assembly.1/SRR1237782/options.json
+    jobid: 0
+    wildcards: sample=SRR1237782
+    threads: 32
+    resources: mem_mb=64000, time=7200, load_superfocus=0, load_kraken=0, load_onehundred=0
+
+
+        rmdir atavide.out/assemblies/assembly.1/SRR1237782 ; 
+        megahit -1 atavide.out/QC_after_hostremoval/SRR1237782_good_out_R1.fastq -2 atavide.out/QC_after_hostremoval/SRR1237782_good_out_R2.fastq -r atavide.out/QC_after_hostremoval/SRR1237782_single_out_R1.fastq -r atavide.out/QC_after_hostremoval/SRR1237782_single_out_R2.fastq                 -o atavide.out/assemblies/assembly.1/SRR1237782 -t 32 --mem-flag 2
+        
+Activating conda environment: /scratch/user/nala0006/atavide-dev/atavide/atavide/atavide/workflow/conda/de5d24b2
+2022-09-08 13:06:24 - MEGAHIT v1.2.9
+2022-09-08 13:06:24 - Using megahit_core with POPCNT and BMI2 support
+2022-09-08 13:06:24 - Convert reads to binary library
+2022-09-08 13:06:24 - b'INFO  sequence/io/sequence_lib.cpp  :   75 - Lib 0 (/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237782_good_out_R1.fastq,/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237782_good_out_R2.fastq): pe, 48238 reads, 101 max length'
+2022-09-08 13:06:24 - b'INFO  sequence/io/sequence_lib.cpp  :   75 - Lib 1 (/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237782_single_out_R1.fastq): se, 0 reads, 0 max length'
+2022-09-08 13:06:24 - b'INFO  sequence/io/sequence_lib.cpp  :   75 - Lib 2 (/scratch/user/nala0006/atavide-dev/atavide/atavide/atavide.out/QC_after_hostremoval/SRR1237782_single_out_R2.fastq): se, 0 reads, 0 max length'
+2022-09-08 13:06:24 - b'INFO  utils/utils.h                 :  152 - Real: 0.2338\tuser: 0.0226\tsys: 0.0145\tmaxrss: 13908'
+2022-09-08 13:06:24 - k-max reset to: 119 
+2022-09-08 13:06:24 - Start assembly. Number of CPU threads 32 
+2022-09-08 13:06:24 - k list: 21,29,39,59,79,99,119 
+2022-09-08 13:06:24 - Memory used: 1936269611827
+2022-09-08 13:06:24 - Extract solid (k+1)-mers for k = 21 
+2022-09-08 13:06:25 - Build graph for k = 21 
+2022-09-08 13:06:26 - Assemble contigs from SdBG for k = 21
+2022-09-08 13:06:27 - Local assembly for k = 21
+2022-09-08 13:06:27 - Extract iterative edges from k = 21 to 29 
+2022-09-08 13:06:27 - Build graph for k = 29 
+2022-09-08 13:06:27 - Assemble contigs from SdBG for k = 29
+2022-09-08 13:06:29 - Local assembly for k = 29
+2022-09-08 13:06:29 - Extract iterative edges from k = 29 to 39 
+2022-09-08 13:06:29 - Build graph for k = 39 
+2022-09-08 13:06:30 - Assemble contigs from SdBG for k = 39
+2022-09-08 13:06:30 - Local assembly for k = 39
+2022-09-08 13:06:30 - Extract iterative edges from k = 39 to 59 
+2022-09-08 13:06:31 - Build graph for k = 59 
+2022-09-08 13:06:31 - Assemble contigs from SdBG for k = 59
+2022-09-08 13:06:32 - Local assembly for k = 59
+2022-09-08 13:06:32 - Extract iterative edges from k = 59 to 79 
+2022-09-08 13:06:32 - Merging to output final contigs 
+2022-09-08 13:06:32 - 9 contigs, total 7787 bp, min 202 bp, max 5393 bp, avg 865 bp, N50 5393 bp
+2022-09-08 13:06:32 - ALL DONE. Time elapsed: 8.245681 seconds 
+[Thu Sep  8 13:06:32 2022]
+Finished job 0.
+1 of 1 steps (100%) done

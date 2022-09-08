@@ -9,6 +9,7 @@ Runs only the QC step
 """
 preprocess=[]
 preprocess.append(expand(os.path.join(PSEQDIR, "{sample}_good_out_R1.fastq"),sample=SAMPLES))
+preprocess.append(os.path.join(STATS, "av_quality_scores_by_position.tsv"))
 
 """TARGETS: Host contamination
 After QC, runs the hostcontamination
@@ -25,8 +26,20 @@ ReadsAnnot=[]
 ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.tsv"), sample=SAMPLES))
 ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.output.tsv"), sample=SAMPLES))
 ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.taxonomy.tsv"), sample=SAMPLES))
+ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "superfocus", "output_all_levels_and_function.xls.zip"), sample=SAMPLES))
+ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R1.taxonomy.zip"), sample=SAMPLES))
 ReadsAnnot.append(os.path.join(STATS, "kraken_species_rarefaction.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_species.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_phyla.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_families.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_genera.tsv"))
+
+"""TARGETS: Assembly 
+After QC, runs assembly
+If host removal performed then those reads are run through these steps
+"""
+assembly=[]
+assembly.append(expand(os.path.join(ASSDIR, "{sample}/final.contigs.fa"), sample=SAMPLES))
+assembly.append(os.path.join(UNASSM, "R1.unassembled.fastq.gz"))
+assembly.append(os.path.join(UNASSM, "R2.unassembled.fastq.gz"))
+assembly.append(os.path.join(UNASSM, "single.unassembled.fastq.gz"))
