@@ -141,3 +141,4 @@ conda
 databases
 host 
 atavide/workflow/databaseDir
+logs_slurm
