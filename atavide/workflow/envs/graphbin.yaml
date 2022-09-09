@@ -4,4 +4,6 @@ channels:
     - conda-forge
     - defaults
 dependencies:
-    - graphbin
+    - pip
+    - pip:
+        - graphbin<=1.6.0

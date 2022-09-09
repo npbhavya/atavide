@@ -137,7 +137,7 @@ atavide.out
 #conda environment 
 conda
 
-#database
+#file that may show up as part of the workflow
 databases
 host 
 atavide/workflow/databaseDir
