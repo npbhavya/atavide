@@ -17,7 +17,7 @@ rule subsample_fastq:
     input:
         r1 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq")
     output:
-        temporary(os.path.join(RBADIR, "{sample}", "kraken", "{sample}_good_out_R1.{frac}.fastq"))
+        os.path.join(RBADIR, "{sample}", "kraken", "{sample}_good_out_R1.{frac}.fastq")
     threads: 8
     resources:
         mem_mb=25000
@@ -57,7 +57,7 @@ rule kraken_summarize_species_ready:
     input:
         expand(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.{frac}.tsv"), sample=SAMPLES, frac=FRACTIONS)
     output:
-        temporary(os.path.join(STATS, "ready_to_summarize"))
+        os.path.join(STATS, "ready_to_summarize")
     shell:
         """
         touch {output}

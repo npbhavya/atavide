@@ -7,8 +7,8 @@ rule run_kraken:
         r1 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),
         r2 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R2.fastq")
     output:
-        rt = temporary(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.tsv")),
-        ot = temporary(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.output.tsv"))
+        rt = os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.tsv"),
+        ot = os.path.join(RBADIR, "{sample}", "kraken", "{sample}.output.tsv")
     threads: 8
     params:
         db= KRKNDB
@@ -30,7 +30,7 @@ rule kraken_taxonomy:
     input:
         os.path.join(RBADIR, "{sample}", "kraken", "{sample}.output.tsv")
     output:
-        temporary(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.taxonomy.tsv"))
+        os.path.join(RBADIR, "{sample}", "kraken", "{sample}.taxonomy.tsv")
     threads: 4
     resources:
         mem_mb=40000

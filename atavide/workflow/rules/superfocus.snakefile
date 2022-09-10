@@ -37,11 +37,14 @@ rule run_superfocus:
     shell:
         """
         if [[ -s {params.d} ]]; then
-            rmdir {params.d}
+            rm -rf {params.d}
+        fi
+        if [[  ! -s {params.TMPDIR} ]]; then 
+            mkdir {params.TMPDIR}
         fi
         mkdir {params.d}
         superfocus -q {input.r1} -q {input.r2} -dir {params.d} -a mmseqs2 -t {threads} -n 0 \
-            -tmp $(mktemp -d -p {params.TMPDIR})
+            -tmp $(mktemp -d -p {params.TMPDIR}) -b {params.db}
         """
 
 rule merge_sf_outputs:

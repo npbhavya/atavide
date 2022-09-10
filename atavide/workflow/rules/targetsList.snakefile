@@ -20,6 +20,7 @@ If host removal performed then those reads are run through these steps
 ReadsAnnot=[]
 ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "superfocus", "output_all_levels_and_function.xls.zip"), sample=SAMPLES))
 ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R1.taxonomy.zip"), sample=SAMPLES))
+ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.{frac}.tsv"), sample=SAMPLES, frac=0.1))
 ReadsAnnot.append(os.path.join(STATS, "kraken_species_rarefaction.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_species.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_phyla.tsv"))
