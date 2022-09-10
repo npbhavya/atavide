@@ -9,18 +9,9 @@ Runs only the QC step
 """
 preprocess=[]
 preprocess.append(os.path.join(STATS, "initial_read_statistics.tsv"))
-preprocess.append(expand(os.path.join(PSEQDIR, "{sample}_good_out_R1.fastq"),sample=SAMPLES))
+preprocess.append(expand(os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),sample=SAMPLES))
 preprocess.append(os.path.join(STATS, "av_quality_scores_by_position.tsv"))
 preprocess.append(os.path.join(STATS, "post_qc_statistics.tsv"))
-
-"""TARGETS: Host contamination
-After QC, runs the hostcontamination
-"""
-contamination=[]
-contamination.append(expand(os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),sample=SAMPLES))
-contamination.append(expand(os.path.join(PSEQDIR_TWO, "{sample}_good_out_R2.fastq"), sample=SAMPLES))
-contamination.append(os.path.join(STATS, "post_host_removal_qc_statistics.tsv"))
-contamination.append(os.path.join(STATS, "post_qc_statistics.tsv"))
 
 """TARGETS: Reads annotations
 After QC, runs the read annotations

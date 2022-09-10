@@ -39,19 +39,19 @@ include: "rules/targetsList.snakefile"
 
 # read the rules for running different pieces and parts of the code
 include: "rules/qc_qa.snakefile"
-include: "rules/fqchk.snakefile"
 
 if config['host_dbpath']:
     include: "rules/deconseq.snakefile"
 else:
     include: "rules/skipDeconseq.snakefile"
+include: "rules/fqchk.snakefile"
 
 include: "rules/kraken_taxonomy.snakefile"
 include: "rules/kraken_rarefaction.snakefile"
 include: "rules/superfocus.snakefile"
 include: "rules/round1_assembly.snakefile"
 include: "rules/round2_assembly.snakefile"
-include: "rules/statistics.snakefile"
+include: "rules/assembly_statistics.snakefile"
 include: "rules/binning-metabat.snakefile"
 include: "rules/bin-refinement.snakefile"
 """
@@ -72,12 +72,7 @@ rule all:
 
 rule QC:
     input:
-        preprocess, 
-        
-rule HostRemoval:
-    input:
-        preprocess, 
-        contamination
+        preprocess
 
 rule ReadAnnotations:
     input:

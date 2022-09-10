@@ -48,10 +48,10 @@ rule merge_sf_outputs:
     input:
         expand(os.path.join(RBADIR, "{smps}", "superfocus", "output_all_levels_and_function.xls"), smps=SAMPLES)
     output:
-        os.path.join(RBADIR, "superfocus_functions.tsv.gz")
+        os.path.join(STATS, "superfocus_functions.tsv.gz")
     params:
         sct = os.path.join(ATAVIDE_DIR, "scripts/joinsuperfocus.pl"),
-        out = os.path.join(RBADIR, "superfocus_functions.tsv")
+        out = os.path.join(STATS, "superfocus_functions.tsv")
     shell:
         """
         perl {params.sct} {input}  > {params.out} && gzip {params.out}

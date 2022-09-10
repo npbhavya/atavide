@@ -41,8 +41,7 @@ with open(snakemake.output.stats, 'w') as out:
             else:
                 auN = 0
 
-            print(f"{f}\t{len(lens):,}\t{length:,}\t{lens[0]:,}\t" \
-                  + f"{lens[-1]:,}\t{n50:,}\t{n75:,}\t{int(auN):,}", file=out)
+            print(f"{f}\t{len(lens):,}\t{length:,}\t{lens[0]:,}\t" + f"{lens[-1]:,}\t{n50:,}\t{n75:,}\t{int(auN):,}", file=out)
         else:
             sys.stderr.write(f"Skipped {os.path.join(subdir, f)}. Does not appear to be fastq\n")
 

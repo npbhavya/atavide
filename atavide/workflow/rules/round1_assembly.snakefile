@@ -30,7 +30,7 @@ rule megahit_assemble:
         "../envs/megahit.yaml"
     shell:
         """
-        rmdir {params.odir} ; 
+        rm -rf {params.odir} ; 
         megahit -1 {input.r1} -2 {input.r2} -r {input.s1} -r {input.s2} \
                 -o {params.odir} -t {threads} --mem-flag 2
         """
