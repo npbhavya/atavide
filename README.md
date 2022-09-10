@@ -77,7 +77,7 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
     
         atavide run --input test-data --profile slurm -R QC
 
-  *Module 2: Host contamination removal* 
+  If config.yaml has host_dbpath set, then host contamination removal is performed along with QC
 
   - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
   - Bowtie2/samtools to remove reads that mapped to host
@@ -87,7 +87,7 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
             host_dbpath: "host"
             host_dbname: "GCA_000001405.15_GRCh38_full_analysis_set.fna.bowtie_index"
 
-  *Module 3: Reads Annotation*
+  *Module 2: Reads Annotation*
 
   - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
   - Taxanomic annotation using [kraken2](https://github.com/DerrickWood/kraken2)
@@ -96,7 +96,7 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 
          atavide run --input test-data --profile slurm -R ReadsAnnotation
 
-  *Module 4: Assembly*
+  *Module 3: Assembly*
 
   - individual assembly of each sample using [megahit](https://github.com/voutcn/megahit)
   - extraction of all reads that do not assemble using samtools flags
@@ -107,7 +107,7 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 
         atavide run --input test-data --profile slurm -R Assembly
 
-  *Module 5: MAG creation* 
+  *Module 4: MAG creation* 
   - Binning using [metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/)
   - Bin refinement using [graphbin2] (https://github.com/metagentools/GraphBin2)
   To run this module, the command is \
