@@ -4,8 +4,8 @@ Read based annoation using Kraken2
 
 rule run_kraken:
     input:
-        r1 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),
-        r2 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R2.fastq")
+        r1 = os.path.join(QCDIR_TWO, "{sample}_good_out_R1.fastq"),
+        r2 = os.path.join(QCDIR_TWO, "{sample}_good_out_R2.fastq")
     output:
         rt = os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.tsv"),
         ot = os.path.join(RBADIR, "{sample}", "kraken", "{sample}.output.tsv")

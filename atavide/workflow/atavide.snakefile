@@ -9,7 +9,7 @@ Repeat that with the site data sets and then again with the sample
 datasets.
 
 To run on this command on HPC with slurm job scheduler:
-atavide run --input test-data --profile slurm
+atavide reads --input test-data --profile slurm
 """
 
 
@@ -20,7 +20,7 @@ configfile: os.path.join(workflow.basedir, '..', 'config', 'config.yaml')
 Validate your inputs, set up directories, parse your config, etc.
 # Moved the file checks to "rules/filechecks.snakefile"
 """
-include: "rules/filechecks.snakefile"
+include: "rules/preflight.snakefile"
 
 """ OLD CODE 
 # how much memory do we have
@@ -40,7 +40,7 @@ include: "rules/targetsList.snakefile"
 # read the rules for running different pieces and parts of the code
 include: "rules/qc_qa.snakefile"
 
-if config['host_dbpath']:
+if config['customHostDirectory']:
     include: "rules/deconseq.snakefile"
 else:
     include: "rules/skipDeconseq.snakefile"
@@ -49,11 +49,7 @@ include: "rules/fqchk.snakefile"
 include: "rules/kraken_taxonomy.snakefile"
 include: "rules/kraken_rarefaction.snakefile"
 include: "rules/superfocus.snakefile"
-include: "rules/round1_assembly.snakefile"
-include: "rules/round2_assembly.snakefile"
-include: "rules/assembly_statistics.snakefile"
-include: "rules/binning-metabat.snakefile"
-include: "rules/bin-refinement.snakefile"
+
 """
 Attemping to make atavide modular
 Current modules
@@ -61,14 +57,13 @@ Current modules
 2. HostRemoval: prepocessing with prinseq + removing reads that map to host
 3. ReadAnnotations : taxa and functional annotation of preprocessed reads 
 
-
 """
+localrules: kraken_summarize_species
+
 rule all:
     input:
         preprocess,
-        ReadsAnnot, 
-        assembly, 
-        binning
+        ReadsAnnot
 
 rule QC:
     input:
@@ -78,14 +73,3 @@ rule ReadAnnotations:
     input:
         preprocess,
         ReadsAnnot
-
-rule Assembly:
-    input:
-        preprocess, 
-        assembly
-
-rule MAGS:
-    input:
-        preprocess,
-        assembly,
-        binning

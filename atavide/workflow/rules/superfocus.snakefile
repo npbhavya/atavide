@@ -14,8 +14,8 @@ rule run_superfocus:
     #    superfocus -q {input.r1} -q {input.r2} -dir {output.d} -a diamond -t {threads} -n 0 -tmp $(mktemp -d -p {params.TMPDIR})
     # but be aware that diamond does not play well run in parallel like snakemake uses.
     input:
-        r1 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),
-        r2 = os.path.join(PSEQDIR_TWO, "{sample}_good_out_R2.fastq")
+        r1 = os.path.join(QCDIR_TWO, "{sample}_good_out_R1.fastq"),
+        r2 = os.path.join(QCDIR_TWO, "{sample}_good_out_R2.fastq")
     output:
         a = os.path.join(RBADIR, "{sample}", "superfocus", "output_all_levels_and_function.xls"),
         l1 = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_1.xls")),

@@ -35,7 +35,7 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 1. Clone this repository from GitHub:
 
     git clone https://github.com/linsalrob/atavide.git
-    git checkout -b dev-np #this will be removed once this branch is tested
+    git checkout -b dev #this will be removed once this branch is tested
     
 2. Install the python packages required to run atavide
 
@@ -43,20 +43,21 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
    
 
 3. Install databases required,
-    - Install the [appropriate super-focus database](https://cloudstor.aarnet.edu.au/plus/s/bjYDqqDXK5u7JiF) \
-        Currently, superfocus database has to be downloaded manually to database directory
+    - Install the [appropriate super-focus database](https://cloudstor.aarnet.edu.au/plus/s/bjYDqqDXK5u7JiF) 
     - Copy the [NCBI taxonomy](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/) (You really just need the [taxdump.tar.gz]   (https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz) file)
+    - [Kraken2 database](https://genome-idx.s3.amazonaws.com/kraken/k2_standard_16gb_20220926.tar.gz) standard 16GB database
+    - Host database, [GRCh38] (https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.tar.gz) downloaded by default
+  
     Run the below command to install the databases
     
         atavide install database
         
     Note: If these databases are already installed, then add the directory file path to config.yaml.
 
-    _Issue_ : Superfocus database doesnt retain the directory structure it need, the online link will be updated soon so this is fixed 
 
 4. Test installation: 
 
-    atavide run --input test-data/SRR1237781_1.fastq.gz
+    atavide reads --input test-data --preprocess paired
     
   The log should complete with no errors, and output directory "atavide.out" should be generated with a copy of the input file
   
@@ -65,17 +66,18 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
     
   To run atavide
 
-    atavide run --input test-data --profile slurm
+    atavide reads --input test-data --preprocess paired --profile slurm
   
   This will run all the steps in atavide mentioned below, or you have the option of running each module one at a time
 
   ### Steps:
   *Module 1: Preprocessing only* 
 
-  - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
-    To run only this module run the command
+  - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus) for Illumina paired end reads
+  
+  To run only this module run the command
     
-        atavide run --input test-data --profile slurm -R QC
+        atavide reads --input test-data --profile slurm -R QC
 
   If config.yaml has host_dbpath set, then host contamination removal is performed along with QC
 
@@ -94,27 +96,7 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
   - Functional annotation using [SUPER_FOCUS](https://github.com/metageni/SUPER-FOCUS)
   To run this module, the command is 
 
-         atavide run --input test-data --profile slurm -R ReadsAnnotation
-
-  *Module 3: Assembly*
-
-  - individual assembly of each sample using [megahit](https://github.com/voutcn/megahit)
-  - extraction of all reads that do not assemble using samtools flags
-  - assembly of all unassembled reads using [megahit](https://github.com/voutcn/megahit)
-  - compilation of _all_ contigs into a single unified set using [Flye](https://github.com/fenderglass/Flye)
-  - comparison of reads -> contigs to generate coverage
-  To run this module, the command is 
-
-        atavide run --input test-data --profile slurm -R Assembly
-
-  *Module 4: MAG creation* 
-  - Binning using [metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/)
-  - Bin refinement using [graphbin2] (https://github.com/metagentools/GraphBin2)
-  To run this module, the command is \
-
-        atavide run --input test-data --profile slurm -R Binning
-
-  _Need to add_ : CheckM 
+         atavide reads --input test-data --profile slurm -R ReadsAnnotation
 
 ## Output 
 ... working on this.. Summarizing the tables generated

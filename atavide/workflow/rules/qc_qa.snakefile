@@ -19,13 +19,13 @@ rule prinseq:
         r1 = os.path.join(READDIR, PATTERN_R1),
         r2 = os.path.join(READDIR, PATTERN_R2)
     output:
-        r1 = os.path.join(PSEQDIR, "{sample}_good_out_R1.fastq"),
-        r2 = os.path.join(PSEQDIR, "{sample}_good_out_R2.fastq"),
-        s1 = os.path.join(PSEQDIR, "{sample}_single_out_R1.fastq"),
-        s2 = os.path.join(PSEQDIR, "{sample}_single_out_R2.fastq"),
+        r1 = os.path.join(QCDIR, "{sample}_good_out_R1.fastq"),
+        r2 = os.path.join(QCDIR, "{sample}_good_out_R2.fastq"),
+        s1 = os.path.join(QCDIR, "{sample}_single_out_R1.fastq"),
+        s2 = os.path.join(QCDIR, "{sample}_single_out_R2.fastq"),
     conda: "../envs/prinseq.yaml"
     params:
-        o = os.path.join(PSEQDIR, "{sample}")
+        o = os.path.join(QCDIR, "{sample}")
     threads: 16
     shell:
         """

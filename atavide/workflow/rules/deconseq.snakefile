@@ -10,7 +10,7 @@
 #                                                          #
 ############################################################
 
-host_bt_index = os.path.join(config['host_dbpath'], config['host_dbname'])
+host_bt_index = os.path.join(config['customHostDirectory'], config['host_dbname'])
 
 # set this to the location where you would like the results
 # written. We will make the directory if it doesn't exist
@@ -26,10 +26,10 @@ if not os.path.exists(host_bt_index + ".1.bt2") and not os.path.exists(host_bt_i
 
 rule btmap:
     input:
-        r1 = os.path.join(PSEQDIR, "{sample}_good_out_R1.fastq"),
-        r2 = os.path.join(PSEQDIR, "{sample}_good_out_R2.fastq"),
-        s1 = os.path.join(PSEQDIR, "{sample}_single_out_R1.fastq"),
-        s2 = os.path.join(PSEQDIR, "{sample}_single_out_R2.fastq"),
+        r1 = os.path.join(QCDIR, "{sample}_good_out_R1.fastq"),
+        r2 = os.path.join(QCDIR, "{sample}_good_out_R2.fastq"),
+        s1 = os.path.join(QCDIR, "{sample}_single_out_R1.fastq"),
+        s2 = os.path.join(QCDIR, "{sample}_single_out_R2.fastq"),
     output:
         os.path.join(INTERIMDIR, '{sample}.hostmapped.bam')
     params:
@@ -88,7 +88,7 @@ rule R1_unmapped:
     input:
         os.path.join(INTERIMDIR, '{sample}.hostmapped.bam')
     output:
-        os.path.join(PSEQDIR_TWO, "{sample}_good_out_R1.fastq"),
+        os.path.join(QCDIR_TWO, "{sample}_good_out_R1.fastq"),
     threads: 8
     resources:
         mem_mb=16000,
@@ -101,7 +101,7 @@ rule R2_unmapped:
     input:
         os.path.join(INTERIMDIR, '{sample}.hostmapped.bam')
     output:
-        os.path.join(PSEQDIR_TWO, "{sample}_good_out_R2.fastq"),
+        os.path.join(QCDIR_TWO, "{sample}_good_out_R2.fastq"),
     threads: 8
     resources:
         mem_mb=16000,
@@ -114,8 +114,8 @@ rule single_reads_unmapped:
     input:
         os.path.join(INTERIMDIR, '{sample}.hostmapped.bam')
     output:
-        s1 = os.path.join(PSEQDIR_TWO, "{sample}_single_out_R1.fastq"),
-        s2 = os.path.join(PSEQDIR_TWO, "{sample}_single_out_R2.fastq")
+        s1 = os.path.join(QCDIR_TWO, "{sample}_single_out_R1.fastq"),
+        s2 = os.path.join(QCDIR_TWO, "{sample}_single_out_R2.fastq")
     conda:
         "../envs/bowtie.yaml"
     threads: 8
@@ -126,14 +126,3 @@ rule single_reads_unmapped:
         samtools fastq -@ {threads} -f 4 -F 1  {input} > {output.s1} &&
         touch {output.s2}
         """
-
-rule after_qc_stats:
-    """
-    Count the statistics after complete QC
-    """
-    input:
-        fqdir = PSEQDIR_TWO
-    output:
-        stats = os.path.join(STATS, "post_host_removal_qc_statistics.tsv")
-    script:
-        "../scripts/countfastq.py"
