@@ -5,14 +5,16 @@
 ncbi: 'https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/'
 ncbi_file: 'taxdump.tar.gz'
 
-#kraken2 database download 
-#downloading kraken2 standard database that contains arachae, bacteria, viral, human and UniVec_core
-#documentation on this database, https://benlangmead.github.io/aws-indexes/k2
-kraken2db_standard: 'https://genome-idx.s3.amazonaws.com/kraken'
-#krakendb: 'k2_standard_20220607.tar.gz'
-#downloading the 8GB standard 
-krakendb: 'k2_standard_08gb_20220607.tar.gz'
+#kraken2db downloading from kraken2-build command
+#From website, https://benlangmead.github.io/aws-indexes/k2
+#kraken2: 'https://genome-idx.s3.amazonaws.com/kraken/k2_standard_20220926.tar.gz'
+kraken2: 'https://genome-idx.s3.amazonaws.com/kraken/k2_standard_16gb_20220926.tar.gz'
 
 #Superfocus database download - need to fix this
 #Downloading the databases from cloudstor, https://cloudstor.aarnet.edu.au/plus/s/bjYDqqDXK5u7JiF
-superfocusdb_mmseqs2: 'https://cloudstor.aarnet.edu.au/plus/s/M1KHPaZbkABhmHL/download'
+superfocusdb_mmseqs2: 'https://cloudstor.aarnet.edu.au/plus/s/sVNFPu0uyANtoMY/download'
+
+#Host sequences 
+#human_GRCh8 bowtie2 indices 
+# website link, https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/
+human: 'https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.tar.gz'

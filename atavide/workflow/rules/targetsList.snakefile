@@ -26,27 +26,3 @@ ReadsAnnot.append(os.path.join(STATS, "kraken_species.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_phyla.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_families.tsv"))
 ReadsAnnot.append(os.path.join(STATS, "kraken_genera.tsv"))
-
-"""TARGETS: Assembly 
-After QC, runs assembly
-If host removal performed then those reads are run through these steps
-"""
-assembly=[]
-assembly.append(os.path.join(UNASSM, "R1.unassembled.fastq.gz"))
-assembly.append(os.path.join(UNASSM, "R2.unassembled.fastq.gz"))
-assembly.append(os.path.join(UNASSM, "single.unassembled.fastq.gz"))
-assembly.append(os.path.join(REASSM, "merged_contigs.fa"))
-assembly.append(os.path.join(CCMO, "assembly.fasta"))
-assembly.append(os.path.join(STATS, "final_assembly.txt"))
-assembly.append(os.path.join(STATS, "sample_coverage.tsv"))
-assembly.append(os.path.join(STATS, "sample_rpkm.tsv"))
-assembly.append(os.path.join(STATS, "sequence_lengths.tsv"))
-
-"""TARGETS: Binning 
-After QC, runs assembly, binning 
-If host removal performed then those reads are run through these steps
-"""
-binning=[]
-binning.append(os.path.join(METABAT, "metabat_depth"))
-binning.append(os.path.join(METABAT, "metabat_bins/metabat_bins.1.fa"))
-binning.append(os.path.join(GRAPHBIN, "graphbin_output.csv"))

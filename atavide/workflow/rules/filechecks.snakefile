@@ -96,12 +96,12 @@ if config['host_dbpath']:
         sys.stderr.write(f"Set the host_dbname variable with the bowtie2 index name in config.yaml file\n")
         sys.exit(0)
    
-    #bt2l = os.path.join(config['host_dbpath'], f"{config['host_dbname']}.1.bt2l")
+    bt2l = os.path.join(config['host_dbpath'], f"{config['host_dbname']}.1.bt2l")
     bt2r = os.path.join(config['host_dbpath'], f"{config['host_dbname']}.1.bt2")
 
-    if not os.path.exists(bt2r):
+    if not os.path.exists(bt2l) or os.path.exists(bt2r):
         sys.stderr.write(f"Error: don't seem to be able to find a bowtie2 index for {config['host_dbname']}\n")
-        sys.stderr.write(f"\tWe looked for {bt2r}\n")
+        sys.stderr.write(f"\tWe looked for {bt2r} and {bt2l}\n")
         sys.exit(0)
 else:
     print("Skipping host removal step since the paths aren't set")

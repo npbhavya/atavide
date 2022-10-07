@@ -1,9 +1,0 @@
-name: graphbin
-channels:
-    - bioconda
-    - conda-forge
-    - defaults
-dependencies:
-    - pip
-    - pip:
-        - graphbin<=1.6.0

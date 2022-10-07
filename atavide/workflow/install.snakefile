@@ -15,11 +15,19 @@ else:
     databaseDir = config['customDatabaseDirectory']
 DATABASES = config['customDatabaseDirectory']
 
+"""CHECK IF CUSTOM HOST DATABASE DIRECTORY"""
+if config['customHostDirectory'] is None:
+    hostDir = os.path.join(workflow.basedir, 'host')
+else:
+    hostDir = config['customHostDirectory']
+HOST = config['customHostDirectory']
+
 """TARGETS"""
 allDatabaseFiles = []
 allDatabaseFiles.append(os.path.join(databaseDir, 'taxdump', config['ncbi_file']))
-allDatabaseFiles.append(os.path.join(databaseDir, 'kraken', config['krakendb']))
-allDatabaseFiles.append(os.path.join(databaseDir, 'superfocus_mmseqsDB', 'mmseqs.zip'))
+allDatabaseFiles.append(os.path.join(databaseDir, 'kraken2db', 'hash.k2d'))
+allDatabaseFiles.append(os.path.join(databaseDir, 'superfocus_mmseqsDB/mmseqs2/db/static/mmseqs2/90_clusters.db'))
+allDatabaseFiles.append(os.path.join(hostDir, 'human', 'GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.1.bt2'))
 
 
 """RUN SNAKEMAKE"""
@@ -30,34 +38,53 @@ rule all:
 """RULES"""
 rule download_taxadb_file:
     params:
-        ncbi =os.path.join(config['ncbi'], config['ncbi_file'])
+        ncbi =os.path.join(config['ncbi'], config['ncbi_file']),
+        files=os.path.join(databaseDir, 'taxdump')
     output:
         os.path.join(databaseDir, 'taxdump', config['ncbi_file'])
     shell:
         """
             curl -Lo {output} {params.ncbi}
-            tar -xvzf {output}
+            tar -xvzf {output} -C {params.files}
         """
         
 rule download_krakendb_file:
     params:
-        kraken =os.path.join(config['kraken2db_standard'], config['krakendb'])
+        kraken =config['kraken2'],
+        db= os.path.join(databaseDir, 'kraken2db.tar.gz')
     output:
-        dir=os.path.join(databaseDir, 'kraken', config['krakendb'])
+        dir=os.path.join(databaseDir, 'kraken2db'),
+        o=os.path.join(databaseDir, 'kraken2db', 'hash.k2d')
     shell:
         """
-            curl -Lo {output.dir} {params.kraken}
-            tar -xvzf {output.dir}
+            curl -Lo {params.db} {params.kraken}
+            mkdir {output.dir}
+            tar -xvzf {params.db} -C {output.dir}
         """
 
 rule download_superfocus_file:
     params:
-        superfocus =os.path.join(config['superfocusdb_mmseqs2'])
+        superfocus =config['superfocusdb_mmseqs2']
     output:
-        os.path.join(databaseDir, 'superfocus_mmseqsDB', 'mmseqsDB.zip')
+        o=os.path.join(databaseDir, 'superfocus_mmseqsDB.tar.gz'),
+        out=os.path.join(databaseDir, 'superfocus_mmseqsDB'),
+        finals=os.path.join(databaseDir, 'superfocus_mmseqsDB/mmseqs2/db/static/mmseqs2/90_clusters.db')
     shell:
         """
-            curl -Lo {output} {params.superfocus}
-            unzip {output}
-            find . -name "*.zip" -exec unzip {} \;
+            curl -Lo {output.o} {params.superfocus}
+            tar -xvf {output.o} -C {output.out}
+        """
+
+rule human_download:
+    params:
+        download=config['human'],
+        files=os.path.join(hostDir, 'human')
+    output:
+        out=os.path.join(hostDir, 'GCA_000001405.15_GRCh38_full_analysis_set.fna.bowtie_index.tar.gz'),
+        o=os.path.join(hostDir, 'human', 'GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.1.bt2')
+    shell:
+        """
+            curl -Lo {output.out} {params.download}
+            mkdir {params.files}
+            tar -xvzf {output.out} -C {params.files}
         """
