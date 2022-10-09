@@ -14,15 +14,13 @@ rule run_superfocus:
     #    superfocus -q {input.r1} -q {input.r2} -dir {output.d} -a diamond -t {threads} -n 0 -tmp $(mktemp -d -p {params.TMPDIR})
     # but be aware that diamond does not play well run in parallel like snakemake uses.
     input:
-        r1 = os.path.join(QCDIR_TWO, "{sample}_good_out_R1.fastq"),
-        r2 = os.path.join(QCDIR_TWO, "{sample}_good_out_R2.fastq")
+        r1 = os.path.join(QCDIR_TWO, "{sample}_filtlong.fastq"),
     output:
         a = os.path.join(RBADIR, "{sample}", "superfocus", "output_all_levels_and_function.xls"),
         l1 = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_1.xls")),
         l2 = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_2.xls")),
         l3 = temporary(os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_3.xls")),
-        m81 = os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R1.fastq_alignments.m8"),
-        m82 = os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R2.fastq_alignments.m8"),
+        m81 = os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_filtlong.fastq_alignments.m8"),
     threads: 16
     params: 
         TMPDIR=TMPDIR, 
@@ -43,7 +41,7 @@ rule run_superfocus:
             mkdir {params.TMPDIR}
         fi
         mkdir {params.d}
-        superfocus -q {input.r1} -q {input.r2} -dir {params.d} -a mmseqs2 -t {threads} -n 0 \
+        superfocus -q {input.r1} -dir {params.d} -a mmseqs2 -t {threads} -n 0 \
             -tmp $(mktemp -d -p {params.TMPDIR}) -b {params.db}
         """
 
@@ -67,9 +65,9 @@ to crate taxonomy tables.
 
 rule superfocus_taxonomy:
     input:
-        m8 = os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R1.fastq_alignments.m8"),
+        m8 = os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_filtlong.fastq_alignments.m8"),
     output:
-        temporary(os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R1.taxonomy"))
+        temporary(os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_filtlong.taxonomy"))
     params:
         t = TAXON
     threads: 4
@@ -95,13 +93,13 @@ rule zip_compress_superfocus:
         os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_1.xls"),
         os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_2.xls"),
         os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_3.xls"),
-        os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R1.taxonomy"),
+        os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_filtlong.taxonomy"),
     output:
         os.path.join(RBADIR, "{sample}", "superfocus", "output_all_levels_and_function.xls.zip"),
         os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_1.xls.zip"),
         os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_2.xls.zip"),
         os.path.join(RBADIR, "{sample}", "superfocus", "output_subsystem_level_3.xls.zip"),
-        os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_good_out_R1.taxonomy.zip"),
+        os.path.join(RBADIR, "{sample}", "superfocus", "{sample}_filtlong.taxonomy.zip"),
     shell:
         """
         for F in {input}; do zip $F.zip $F; done

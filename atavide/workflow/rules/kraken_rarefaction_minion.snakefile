@@ -17,9 +17,9 @@ FRACTIONS = [i/10 for i in range(1, 10)]
 
 rule subsample_fastq:
     input:
-        r1 = os.path.join(QCDIR_TWO, "{sample}_good_out_R1.fastq")
+        r1 = os.path.join(QCDIR_TWO, "{sample}_filtlong.fastq")
     output:
-        temporary(os.path.join(RBADIR, "{sample}", "kraken", "{sample}_good_out_R1.{frac}.fastq"))
+        temporary(os.path.join(RBADIR, "{sample}", "kraken", "{sample}_filtlong.{frac}.fastq"))
     threads: 8
     resources:
         mem_mb=25000
@@ -34,7 +34,7 @@ rule subsample_fastq:
 
 rule kraken_subsample:
     input:
-        r1 = os.path.join(RBADIR, "{sample}", "kraken", "{sample}_good_out_R1.{frac}.fastq")
+        r1 = os.path.join(RBADIR, "{sample}", "kraken", "{sample}_filtlong.{frac}.fastq")
     output:
         rt = os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.{frac}.tsv"),
     threads: 8

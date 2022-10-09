@@ -4,8 +4,7 @@ Read based annoation using Kraken2
 
 rule run_kraken:
     input:
-        r1 = os.path.join(QCDIR_TWO, "{sample}_good_out_R1.fastq"),
-        r2 = os.path.join(QCDIR_TWO, "{sample}_good_out_R2.fastq")
+        r1 = os.path.join(QCDIR_TWO, "{sample}_filtlong.fastq"),
     output:
         rt = os.path.join(RBADIR, "{sample}", "kraken", "{sample}.report.tsv"),
         ot = os.path.join(RBADIR, "{sample}", "kraken", "{sample}.output.tsv")
@@ -22,7 +21,8 @@ rule run_kraken:
                 --output {output.ot} \
                 --threads {threads} \
                 --db {params.db} \
-                --paired {input.r1} {input.r2} \
+                --report-zero-counts \
+                {input.r1} \
                 --use-names
         """
 

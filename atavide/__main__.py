@@ -52,7 +52,7 @@ INSTALL DATABASES:
 atavide install 
 \b
 RUN EXAMPLES:
-Required:           atavide reads --input [file]
+Required:           atavide reads --input [file] --preprocess [paired/longread]
 Specify threads:    atavide reads ... --threads [threads]
 Disable conda:      atavide reads ... --no-use-conda 
 Change defaults:    atavide reads ... --snake-default="-k --nolock"

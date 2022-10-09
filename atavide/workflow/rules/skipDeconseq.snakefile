@@ -1,3 +1,4 @@
+
 """
 Making a new directory and just copying QC results here 
 """
@@ -18,7 +19,8 @@ rule copyfiles:
         indir = "QCDIR"
     shell:
         """
-            rmdir {params.odir}
-            mkdir {params.odir}
-            cp -r {params.indir} {params.odir}
+            cp -r {input.r1} {output.o1}
+            cp -r {input.r2} {output.o2}
+            cp -r {input.s1} {output.os1}
+            cp -r {input.s2} {output.os2}
         """

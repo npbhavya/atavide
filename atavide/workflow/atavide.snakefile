@@ -38,17 +38,31 @@ Declare your targets, either here, or in a separate file.
 include: "rules/targetsList.snakefile"
 
 # read the rules for running different pieces and parts of the code
-include: "rules/qc_qa.snakefile"
+if config ['sequencing'] == 'paired':
+    include: "rules/qc_qa.snakefile"
 
-if config['customHostDirectory']:
-    include: "rules/deconseq.snakefile"
-else:
-    include: "rules/skipDeconseq.snakefile"
-include: "rules/fqchk.snakefile"
+    if config['customHostDirectory']:
+        include: "rules/deconseq.snakefile"
+    else:
+        include: "rules/skipDeconseq.snakefile"
+    include: "rules/fqchk.snakefile"
 
-include: "rules/kraken_taxonomy.snakefile"
-include: "rules/kraken_rarefaction.snakefile"
-include: "rules/superfocus.snakefile"
+    include: "rules/kraken_taxonomy.snakefile"
+    include: "rules/kraken_rarefaction.snakefile"
+    include: "rules/superfocus.snakefile"
+
+elif config['sequencing'] == 'longread':
+    include: "rules/qc_qa_minion.snakefile"
+
+    if config['customHostDirectory']:
+        include: "rules/deconseq_minion.snakefile"
+    else:
+        include: "rules/skipDeconseq_minion.snakefile"
+    include: "rules/fqchk_minion.snakefile"
+
+    include: "rules/kraken_taxonomy_minion.snakefile"
+    include: "rules/kraken_rarefaction_minion.snakefile"
+    include: "rules/superfocus_minion.snakefile"
 
 """
 Attemping to make atavide modular

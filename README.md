@@ -67,17 +67,26 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
     
   To run atavide
 
-    atavide reads --input test-data --preprocess paired --profile slurm
+      atavide reads --input test-data --preprocess paired --profile slurm
+  
   
   This will run all the steps in atavide mentioned below, or you have the option of running each module one at a time
   
   To run long reads through atavide
   
-        atavide reads --input test-data --preprocess paired --profile slurm
+        atavide reads --input test-data --preprocess longread --profile slurm
 
-  ### Steps:
-  *Preprocessing only* 
+  ### Input files 
+  ** Paired end **
+  The metagenomes should be placed in a directory, and the directory must be provided as the input 
+    - the input reads should be in the format <filename>_R1.fastq, or <filename>_R1.fastq.gz
+    - Similarly, reverse read is <filename>_R2.fastq, or <filename>_R2.fastq.gz
+
+  ** Long read **
+  The metagenomes should be placed in a directory and the read should be in fastq or fastq.gz format
+
   
+  ### Steps:  
   - QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)
   - Bowtie2/samtools to remove reads that mapped to host
     Note: Have to provide the directory, bowtie2 indices names in the config file

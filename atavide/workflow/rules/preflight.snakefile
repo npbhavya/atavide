@@ -46,7 +46,8 @@ elif config['sequencing'] == 'longread':
         sys.stderr.write("\n\t".join(set(EXTENSIONS2)))
         sys.stderr.write("\nWe don't know how to handle these\n")
         sys.exit(0)
-
+    FQEXTN = EXTENSIONS[0]
+    PATTERN = '{sample}.'+FQEXTN
 
 STATS   = os.path.join(config['output'], 'statistics')
 TMPDIR  = os.path.join(config['output'], 'temp_directory')
@@ -76,7 +77,7 @@ else:
 #Where is the superfocus database?
 SFDB = None
 if (config['customDatabaseDirectory']):
-    SFDB = os.path.join(config['customDatabaseDirectory'], 'superfocus_mmseqsDB', 'mmseqs2')
+    SFDB = os.path.join(config['customDatabaseDirectory'], 'superfocus_mmseqsDB', 'superfocus_mmseqsDB', 'mmseqs2')
 elif 'SUPERFOCUS_DB' in os.environ:
     SFDB = os.environ['SUPERFOCUS_DB']
 else:

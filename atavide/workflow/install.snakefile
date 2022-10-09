@@ -26,7 +26,7 @@ HOST = config['customHostDirectory']
 allDatabaseFiles = []
 allDatabaseFiles.append(os.path.join(databaseDir, 'taxdump', config['ncbi_file']))
 allDatabaseFiles.append(os.path.join(databaseDir, 'kraken2db', 'hash.k2d'))
-allDatabaseFiles.append(os.path.join(databaseDir, 'superfocus_mmseqsDB/mmseqs2/db/static/mmseqs2/90_clusters.db'))
+allDatabaseFiles.append(os.path.join(databaseDir, 'superfocus_mmseqsDB/superfocus_mmseqsDB/mmseqs2/db/static/mmseqs2/90_clusters.db'))
 allDatabaseFiles.append(os.path.join(hostDir, 'human', 'GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.1.bt2'))
 
 
@@ -58,6 +58,7 @@ rule download_krakendb_file:
     shell:
         """
             curl -Lo {params.db} {params.kraken}
+            rm -rf {output.dir}
             mkdir {output.dir}
             tar -xvzf {params.db} -C {output.dir}
         """
@@ -68,7 +69,7 @@ rule download_superfocus_file:
     output:
         o=os.path.join(databaseDir, 'superfocus_mmseqsDB.tar.gz'),
         out=os.path.join(databaseDir, 'superfocus_mmseqsDB'),
-        finals=os.path.join(databaseDir, 'superfocus_mmseqsDB/mmseqs2/db/static/mmseqs2/90_clusters.db')
+        finals=os.path.join(databaseDir, 'superfocus_mmseqsDB/superfocus_mmseqsDB/mmseqs2/db/static/mmseqs2/90_clusters.db')
     shell:
         """
             curl -Lo {output.o} {params.superfocus}
@@ -85,6 +86,7 @@ rule human_download:
     shell:
         """
             curl -Lo {output.out} {params.download}
+            rm -rf {params.files}
             mkdir {params.files}
             tar -xvzf {output.out} -C {params.files}
         """
