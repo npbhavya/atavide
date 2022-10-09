@@ -58,6 +58,7 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 
 4. Test installation: 
 
+
         atavide reads --input test-data --preprocess paired
     
   The log should complete with no errors, and output directory "atavide.out" should be generated with a copy of the input file
