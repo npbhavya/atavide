@@ -57,12 +57,24 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 
 
 4. Test installation: 
-
-
-        atavide reads --input test-data --preprocess paired
-    
-  The log should complete with no errors, and output directory "atavide.out" should be generated with a copy of the input file
+   Download the test data, for both paired end and nanopore reads 
   
+        curl -Lo test-data.tar.gz https://cloudstor.aarnet.edu.au/plus/s/a5GEHreAy4Ozs1Q/download
+        tar -xvzf test-data.tar.gz
+
+   This will download a directory test-data with two subdirectories, paired-end and longreads.
+
+   Run atavide with test-data 
+
+        atavide reads --input test-data/paired --preprocess paired 
+    
+    The log should complete with no errors, and output directory "atavide.out". \
+    If finished successfully, the last line of the command log should say
+
+              Complete log: .snakemake/log/2022-10-10T081240.934648.snakemake.log
+              [2022:10:10 08:15:16] Snakemake finished successfully
+        
+    
 
 ## Running Atavide
     
