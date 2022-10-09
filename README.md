@@ -11,15 +11,7 @@
 
 `atavide` is 100% snakemake and conda, so you only need to install the snakemake workflow, and then everything else will be installed with conda.
 
-
-It is definitely a work in progress, but you can run it with the following command 
-
-```bash
-atavide run --input test-data
-```
-
-But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02/snakemake-profiles-updated) to make this work!
-
+This is anskemake workflow that is built from [Snaketool] (https://github.com/beardymcjohnface/Snaketool), and first config file must be set up so the worklfow can schedule jobs on the cluster. To set up config files for [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02/snakemake-profiles-updated) follow this blog. 
 
 ## Installation 
 
