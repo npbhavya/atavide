@@ -35,7 +35,8 @@ But you will need a [slurm profile](https://fame.flinders.edu.au/blog/2021/08/02
 1. Clone this repository from GitHub:
 
     git clone https://github.com/linsalrob/atavide.git
-    git checkout -b dev #this will be removed once this branch is tested
+    #this will be removed once this branch is tested
+    git checkout -b dev
     
 2. Install the python packages required to run atavide
 
