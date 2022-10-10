@@ -112,7 +112,7 @@ This directory should be filled with the followig files,
 - av_quality_scores_by_position.tsv: The quality score of reads by bp position post QC and host removal 
 - kraken_species_rarefaction.tsv: Number of species identified from subset of metagenome samples to plot rarefaction curves 
   The columns include, fraction of the subset, number of species within each metagenome 
-- Kraken taxa output:
+- Kraken taxa output: The numbers reported here are "Percentage of fragments covered by the clade rooted at this taxon" from kraken report output format.
   - kraken_families.tsv
   - kraken_genera.tsv
   - kraken_phyla.tsv
