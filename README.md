@@ -17,7 +17,7 @@ This is anskemake workflow that is built from [Snaketool] (https://github.com/be
 
 0. Make sure to have a conda environment with snakemake v.7.14 and higher installed \
         
-            conda create env -n workflow
+            conda create -n workflow
             conda activate workflow
             conda install -c conda-forge mamba
             conda install -c bioconda snakemake
