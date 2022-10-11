@@ -26,7 +26,7 @@ This is anskemake workflow that is built from [Snaketool] (https://github.com/be
 
 1. Clone this repository from GitHub:
 
-            git clone https://github.com/linsalrob/atavide.git
+            git clone https://github.com/npbhavya/atavide.git
             #this will be removed once this branch is tested
             git checkout -b dev
     
