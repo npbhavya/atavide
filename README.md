@@ -26,11 +26,8 @@ This is anskemake workflow that is built from [Snaketool] (https://github.com/be
 
 1. Clone this repository from GitHub:
 
-            git clone https://github.com/npbhavya/atavide.git
-            cd atavide
-            #this will be removed once this branch is tested
-            git checkout -b dev
-    
+            git clone -b dev https://github.com/npbhavya/atavide.git
+           
 2. Install the python packages required to run atavide
 
         cd atavide & python setup.py install
