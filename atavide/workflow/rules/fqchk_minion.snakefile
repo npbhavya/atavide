@@ -65,6 +65,8 @@ rule post_qc_stats:
     """
     input:
         fqdir = QCDIR_TWO
+    params:
+        fqdir = QCDIR_TWO
     output:
         stats = os.path.join(STATS, "post_qc_statistics.tsv")
     script:

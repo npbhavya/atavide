@@ -39,7 +39,7 @@ rule btmap:
     shell:
         """
 		bowtie2 --mm -p {threads} -x {params.idx} -U {input.r1} \
-         | samtools view -@ {threads} -bh | samtools sort -o {output} -
+         | samtools view -@ {threads} -bh | samtools sort -o {output} 
         """
 
 rule R1_reads_map_to_ref:
@@ -53,7 +53,9 @@ rule R1_reads_map_to_ref:
     conda:
         "../envs/bowtie.yaml"
     shell:
-        "samtools fastq -@ {threads} -G 12 -f 65 {input} > {output}"
+        """
+        samtools fastq -@ {threads} b -F 4  {input} > {output}
+        """
 
 
 rule R1_unmapped:
@@ -67,4 +69,4 @@ rule R1_unmapped:
     conda:
         "../envs/bowtie.yaml"
     shell:
-        "samtools fastq -@ {threads} -f 77  {input} > {output}"
+        "samtools fastq -@ {threads} -f 4  {input} > {output}"

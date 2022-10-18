@@ -1,19 +1,15 @@
 customDatabaseDirectory: databases
+customHostDirectory: host
 directories:
   assemblies: assemblies
   binning: binning
   read_based_annotations: ReadAnnotations
   statistics: statistics
   temp_directory: tmp
-
-#where to add the host databases
-customHostDirectory: host
 host_dbname: GRCm38/GRCm38
-#customHostDirectory:
-
-
-input: guppy_out
-output: atavide.out
+input: ../mouse_fastq
+output: ../mouse_output
 sample_description: read based annotation, assembly and binning of metagenomes by
   atavide
 sample_id: atavide
+sequencing: longread
