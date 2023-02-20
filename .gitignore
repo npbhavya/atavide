@@ -130,3 +130,17 @@ dmypy.json
 
 # snakemake builds
 .snakemake/
+
+# output directory 
+atavide.out 
+
+#conda environment 
+conda
+atavide/workflow/conda
+
+#file that may show up as part of the workflow
+database
+databases
+host 
+atavide/workflow/databaseDir
+logs_slurm

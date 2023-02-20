@@ -1,0 +1,19 @@
+customDatabaseDirectory: databases
+directories:
+  assemblies: assemblies
+  binning: binning
+  read_based_annotations: ReadAnnotations
+  statistics: statistics
+  temp_directory: tmp
+
+#where to add the host databases
+customHostDirectory: host
+#customHostDirectory:
+
+
+input: test-data/paired
+output: atavide.out
+sample_description: read based annotation, assembly and binning of metagenomes by
+  atavide
+sample_id: atavide
+
