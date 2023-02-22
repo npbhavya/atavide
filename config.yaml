@@ -6,7 +6,7 @@ directories:
   read_based_annotations: ReadAnnotations
   statistics: statistics
   temp_directory: tmp
-input: test-data/paired
+input: ../test-data/paired
 output: atavide.out
 sample_description: read based annotation, assembly and binning of metagenomes by
   atavide

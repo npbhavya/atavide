@@ -17,3 +17,5 @@ sample_description: read based annotation, assembly and binning of metagenomes b
   atavide
 sample_id: atavide
 
+fq2fa: >
+  perl -e 'while(<>){s/ /_/g; print ">$_";$s=<>;$s =~ m/^[ACGTN]*$/ ? print "$s": die;<>;<>;}'

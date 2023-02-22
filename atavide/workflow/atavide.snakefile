@@ -35,6 +35,11 @@ if config ['sequencing'] == 'paired':
     include: "rules/fqchk.snakefile"
     inlcude: "rules/statistics.snakefile"
 
+    #Reads annotation rules
+    include: "rules/reads_fastq2fasta.snakefile"
+    include: "rules/reads_taxa_mmseqs.snakefile"
+    include: "rules/reads_annot_mmseqs.snakefile"
+
 elif config['sequencing'] == 'longread':
     include: "rules/qc_qa_minion.snakefile"
 
@@ -57,4 +62,5 @@ Current modules
 
 rule all:
     input:
-        preprocess
+        preprocess,
+        ReadsAnnot

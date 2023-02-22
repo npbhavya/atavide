@@ -25,7 +25,7 @@ HOST = config['customHostDirectory']
 """TARGETS"""
 allDatabaseFiles = []
 allDatabaseFiles.append(os.path.join(hostDir, 'human', 'GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.bowtie_index.1.bt2'))
-allDatabaseFiles.append(os.path.join('database', 'uniref50', 'latest','version'))
+allDatabaseFiles.append(os.path.join('database', 'uniref50', 'UniRef50.version'))
 
 """RUN SNAKEMAKE"""
 rule all:
@@ -55,8 +55,9 @@ rule uniref:
         o=os.path.join('database', 'uniref50', 'latest', 'version')
     conda:
         "envs/mmseqs2.yaml"
+    threads: 8
     shell:
         """
-            mmseqs databases UniRef50 uniref50 {params.files}
+            mmseqs databases --threads {threads} UniRef50 {params.files} {params.files}
         """    
 
