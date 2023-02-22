@@ -52,12 +52,12 @@ INSTALL DATABASES:
 atavide install 
 \b
 RUN EXAMPLES:
-Required:           atavide reads --input [file] --preprocess [paired/longread]
-Specify threads:    atavide reads ... --threads [threads]
-Disable conda:      atavide reads ... --no-use-conda 
-Change defaults:    atavide reads ... --snake-default="-k --nolock"
-Add Snakemake args: atavide reads ... --dry-run --keep-going --touch
-Specify targets:    atavide reads ... all print_targets
+Required:           atavide run --input [file] --preprocess [paired/longread]
+Specify threads:    atavide run ... --threads [threads]
+Disable conda:      atavide run ... --no-use-conda 
+Change defaults:    atavide run ... --snake-default="-k --nolock"
+Add Snakemake args: atavide run ... --dry-run --keep-going --touch
+Specify targets:    atavide run ... all print_targets
 Available targets:
     all             Run everything (default)
     print_targets   List available targets
@@ -86,7 +86,7 @@ def install(configfile, threads, use_conda, conda_prefix, snake_default, **kwarg
                      type=click.Choice(['paired', 'longread']))
 
 @common_options
-def reads(_input, preprocess, configfile, output, threads, use_conda, conda_prefix, snake_default,
+def run(_input, preprocess, configfile, output, threads, use_conda, conda_prefix, snake_default,
         snake_args, **kwargs):
     """Run atavide"""
 
@@ -125,8 +125,7 @@ def citation(**kwargs):
     """Print the citation(s) for this tool"""
     print_citation()
 
-
-cli.add_command(reads)
+cli.add_command(run)
 cli.add_command(install)
 cli.add_command(config)
 cli.add_command(citation)

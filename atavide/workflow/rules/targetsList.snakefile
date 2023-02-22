@@ -35,4 +35,8 @@ if config['sequencing'] == 'paired':
     ReadsAnnot.append(expand(os.path.join(QCDIR_TWO, "{sample}_good_out_R2.fasta.gz"), sample=SAMPLES))
     ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}.taxonomy_report"), sample=SAMPLES))
     ReadsAnnot.append(expand(os.path.join(RBADIR, "{sample}.functions"), sample=SAMPLES))
-    
+
+Assembly=[]
+if config['sequencing'] == 'paired':
+   Assembly.append(expand(os.path.join(ASSEMBLY, "{sample}-megahit", "{sample}.contigs.fa"), sample=SAMPLES))
+   Assembly.append(expand(os.path.join(ASSEMBLY, "{sample}-megahit", "{sample}.fastg"), sample=SAMPLES))

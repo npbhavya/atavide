@@ -52,6 +52,7 @@ elif config['sequencing'] == 'longread':
 STATS   = os.path.join(config['output'], 'statistics')
 TMPDIR  = os.path.join(config['output'], 'temp_directory')
 RBADIR  = os.path.join(config['output'], 'read_based_annotations')
+ASSEMBLY= os.path.join(config['output'], 'assembly')
 
 SAMPLE_ID=re.sub('\W+','', config['sample_id'])
 

@@ -40,6 +40,9 @@ if config ['sequencing'] == 'paired':
     include: "rules/reads_taxa_mmseqs.snakefile"
     include: "rules/reads_annot_mmseqs.snakefile"
 
+    #assembly rules 
+    include: "rules/assembly_megahit.snakefile"
+
 elif config['sequencing'] == 'longread':
     include: "rules/qc_qa_minion.snakefile"
 
@@ -63,4 +66,5 @@ Current modules
 rule all:
     input:
         preprocess,
-        ReadsAnnot
+        ReadsAnnot,
+        Assembly
